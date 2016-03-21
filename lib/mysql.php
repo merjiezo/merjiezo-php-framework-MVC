@@ -1,0 +1,111 @@
+<?php
+// namespace lib;
+/**
+ * mysql Connection
+ */
+class mysql {
+	/**
+	 *搜索工厂模式
+	 *@param sql
+	 *@return array   返回列表数组
+	 **/
+	public function Search($sql) {
+		$query  = $this->query($sql);
+		$result = $this->findAll($query);
+		return $result;
+	}
+	/**
+	 *插入数据
+	 *@param  tablename
+	 * @param 插入的数组
+	 *@return 是否成功
+	 **/
+	public function InsertInto($table, $arr) {
+		foreach ($arr as $key => $value) {
+			$keyArr[]   = '`'.$key.'`';
+			$keyValue[] = '\''.$value.'\'';
+		}
+		$keys   = implode(',', $keyArr);
+		$values = implode(',', $keyValue);
+		$sql    = 'insert into '.$table.'('.$keys.') values('.$values.')';
+		return $this->query($sql);
+	}
+	/**
+	 *更新数据
+	 *@param  tablename
+	 * @param update的数据
+	 * @param KeyName表的主键名
+	 * @param ID主键号
+	 *@return 是否成功
+	 **/
+	public function UpdateData($table, $KeyName, $id, $arrUpdate) {
+		foreach ($arrUpdate as $key => $value) {
+			$keyAndvalueArr[] = "`".$key."`='".$value."'";
+		}
+		$keyAndValue = implode(',', $keyAndvalueArr);
+		$sql         = 'update '.$table.' set '.$keyAndValue.' where '.$KeyName.' = \''.$id.'\'';
+		$query       = $this->query($sql);
+		return $query;
+	}
+	public function deleteOneRecord($tables, $theKey, $findId) {
+		$sql   = 'DELETE FROM '.$tables.' WHERE '.$theKey.' = \''.$findId.'\'';
+		$query = $this->query($sql);
+		return $query;
+	}
+	/**
+	 *@param sql语句
+	 *@return source $query sql
+	 **/
+	public function query($sql) {
+		$connection = $this->DatabaseConnection();
+		$this->dbSqlProtected($connection, $sql);
+		if (!($query = mysqli_query($connection, $sql))) {//使用mysql_query函数执行sql语句
+			$this->err($sql."<br />".mysqli_error($connection));//mysql_error 报错
+		} else {
+			return $query;
+		}
+	}
+	/**
+	 *@param source $query sql语句通过mysql_query 执行出来的资源
+	 *@return array   返回列表数组
+	 **/
+	private function findAll($query) {
+		while ($rs = mysqli_fetch_array($query, MYSQL_ASSOC)) {//mysql_fetch_array函数把资源转换为数组，一次转换出一行出来
+			$list[] = $rs;
+		}
+		return isset($list)?$list:"";
+	}
+
+	/**
+	 *sql注入防范(基本)，传入想要校验的数据
+	 *@param  处理前的sql
+	 *@return 处理后的value
+	 **/
+	private function dbSqlProtected($connection, $value) {
+		$value = mysqli_real_escape_string($connection, $value);
+		return $value;
+	}
+	/**
+	 *连接数据库
+	 *@return 连接资源
+	 **/
+	private function DatabaseConnection() {
+		require ('../config/db.php');
+		$connection = mysqli_connect($db['host'], $db['user'], $db['password'], $db['dbName']);
+		if (!mysqli_query($connection, 'set names utf8')) {
+			mysqli_error($connection);
+		}
+		if (mysqli_connect_error($connection)) {
+			return "Failed to connect to database: ".mysqli_connect_error();
+		}
+		return $connection;
+	}
+
+	private function err($error) {
+		die("对不起，您的操作有误，错误原因为：".$error);
+	}
+
+}
+// $mysql = new mysql();
+// $sql   = 'SELECT st_classmark FROM exitem WHERE shuqian = \'3\'';
+// echo $mysql->Search($sql)[0]['st_classmark'];

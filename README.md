@@ -1,22 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>MerjiezoMVC</title>
-	<link rel="stylesheet" href="//cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css">
-</head>
-<body>
-	<div class="jumbotron">
-		<div class="container">
-			<h1>merjiezoMVC：轻量级，好用，尚在更新</h1>
-			<p>这是一个很年轻的框架，刚刚开始编写，很多功能尚在开发</p>
-			<hr>
-			<p>为什么会编写这个框架呐，因为具体在给小朋友培训的时候，发现其实就技术方面很难在短时间形成，因为这个，所以编写出这个框架，让小伙伴能够更加快的上手，从这个微型框架上学到一些内容。当然，作为一名大学狗，还有很多需要学习，很多需要改进的，有任何的问题，欢迎邮件到我的邮箱</p>
-			<h3>535381437@qq.com</h3>
-		</div>
-	</div>
-</body>
-</html>
 # merjiezoMVC：轻量级，好用，尚在更新
 
 这是一个很年轻的框架，刚刚开始编写，很多功能尚在开发

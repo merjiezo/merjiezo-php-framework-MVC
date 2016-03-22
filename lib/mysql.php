@@ -66,6 +66,24 @@ class mysql {
 		}
 	}
 	/**
+	 * 返回表内所有表名
+	 * @param string $schema the schema of the tables. Defaults to empty string, meaning the current or default schema.
+	 * @return array all table names in the database. The names have NO schema name prefix.
+	 */
+	protected function findTableNames($schema = '') {
+		$sql = 'SHOW TABLES';
+		if ($schema !== '') {
+			$sql .= ' FROM '.$this->quoteSimpleTableName($schema);
+		}
+
+		return $this->db->createCommand($sql)->queryColumn();
+	}
+
+	public function quoteSimpleTableName($name) {
+		return strpos($name, "`") !== false?$name:"`".$name."`";
+	}
+
+	/**
 	 *@param source $query sql语句通过mysql_query 执行出来的资源
 	 *@return array   返回列表数组
 	 **/

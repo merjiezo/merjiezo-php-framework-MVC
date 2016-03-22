@@ -3,12 +3,17 @@ $mysqlPath = dirname(__FILE__).'/mysql.php';
 include ($mysqlPath);
 class MModel extends mysql {
 
-	private $mysql;
 	protected $tableName = '';
-
+	/**
+	 *返回一条纪录内的一个值
+	 *@param  想要取出的值
+	 *@param  主键属性
+	 *@param  主键对应的值
+	 *@return 返回一个值
+	 **/
 	public function findOnlyOne($target, $idName, $idVal) {
 		$sql  = 'SELECT '.$target.' FROM '.$this->tableName.' WHERE '.$idName.'=\''.$idVal.'\'';
-		$rows = $this->mysql->Search($sql);
+		$rows = $this->Search($sql);
 		if ($rows) {
 			return $rows[0][$target];
 		} else {
@@ -16,8 +21,20 @@ class MModel extends mysql {
 		}
 	}
 
-	public function __construct() {
-		$this->mysql = new mysql();
+	/**
+	 *返回一条纪录
+	 *@param  主键属性
+	 *@param  主键对应的值
+	 *@return 返回这条纪录
+	 **/
+	public function fingOneRecord($userId, $userIdVal) {
+		$sql  = 'SELECT * FROM '.$this->tableName.' WHERE '.$userId.'=\''.$userIdVal.'\'';
+		$rows = $this->Search($sql);
+		if ($rows) {
+			return $rows[0];
+		} else {
+			return false;
+		}
 	}
 	/**
 	 *加密代码
@@ -34,21 +51,22 @@ class MModel extends mysql {
 		}
 	}
 	/**
-	 *搜索工厂模式
+	 *转换成json格式，并且返回成功与否
 	 *@param 是否成功
 	 *@param 待处理的数组
 	 *@return json数组，带有是否成功的标记
 	 **/
 	protected function jsonGet($success, $arr = []) {
 		if ($success) {
-			$json = json_encode($arr);
-			return '{"success":true,'.substr($json, 1, -1).'}';
+			if ($arr) {
+				$json = json_encode($arr);
+				return '{"success":true,'.substr($json, 1, -1).'}';
+			} else {
+				return '{"success":false}';
+			}
 		} else {
 			return '{"success":false}';
 		}
 	}
 
 }
-// $Mmodel            = new MModel();
-// $Mmodel->tableName = 'exitem';
-// echo $Mmodel->findOnlyOne('st_classmark', 'shuqian', '123');

@@ -3,8 +3,8 @@ $MModel = dirname(__FILE__).'MModel.php';
 include ($MModel);
 class login extends MModel {
 
-	private $username;
-	private $password;
+	private $username = '';
+	private $password = '';
 	private $tableName;
 	private $error = '';
 	private $MModel;
@@ -23,15 +23,15 @@ class login extends MModel {
 	}
 
 	private function EmptyOrNot() {
-		if ($this->username == '' || $this->password) {
-			return false;
+		if ($this->username == '' || $this->password == '') {
+			$this->error = 'Empty';
 		} else {
 			return true;
 		}
 	}
 	private function getpassword() {
 		$MModel   = new MModel();
-		$password = $this->Dbfactory->findOnlyOne('XH_PW', 'user_tb', 'XH_ID', $this->username);
+		$password = $MModel->findOnlyOne('XH_PW', 'user_tb', 'XH_ID', $this->username);
 		return $password;
 	}
 

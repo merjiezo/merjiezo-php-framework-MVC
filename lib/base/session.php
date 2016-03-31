@@ -20,7 +20,7 @@ class Session {
 		if ($this->getIsActive()) {
 			return;
 		} else {
-			return 'session启动失败！';
+			return 'session failed to start';
 		}
 	}
 

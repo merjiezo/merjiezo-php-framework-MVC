@@ -1,6 +1,5 @@
 <?php
-include ('');
-class ClassName extends AnotherClass {
+class RoleControl {
 
 	private $status;
 

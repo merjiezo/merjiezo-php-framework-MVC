@@ -1,5 +1,5 @@
 <?php
-$mysqlPath = dirname(__FILE__).'/mysql.php';
+$mysqlPath = dirname(__FILE__).'/../mysql.php';
 include ($mysqlPath);
 class MModel extends mysql {
 
@@ -27,7 +27,7 @@ class MModel extends mysql {
 	 *@param  主键对应的值
 	 *@return 返回这条纪录
 	 **/
-	public function fingOneRecord($userId, $userIdVal) {
+	public function findOneRecord($userId, $userIdVal) {
 		$sql  = 'SELECT * FROM '.$this->tableName.' WHERE '.$userId.'=\''.$userIdVal.'\'';
 		$rows = $this->Search($sql);
 		if ($rows) {
@@ -49,6 +49,14 @@ class MModel extends mysql {
 			$value      = $ciphertext.''.$ciphertext;
 			return sha1(md5(str).'merjiezo');
 		}
+	}
+	/**
+	 *加密代码
+	 *@param  明文
+	 *@return 返回密文
+	 **/
+	public function recordExist($sql) {
+
 	}
 	/**
 	 *转换成json格式，并且返回成功与否

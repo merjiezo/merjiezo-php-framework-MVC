@@ -1,5 +1,4 @@
 <?php
-// namespace lib;
 /**
  * mysql Connection
  */
@@ -108,7 +107,7 @@ class mysql {
 	 *@return 连接资源
 	 **/
 	private function DatabaseConnection() {
-		require ('../config/db.php');
+		require ('config/db.php');
 		$connection = mysqli_connect($db['host'], $db['user'], $db['password'], $db['dbName']);
 		if (!mysqli_query($connection, 'set names utf8')) {
 			mysqli_error($connection);
@@ -124,6 +123,3 @@ class mysql {
 	}
 
 }
-// $mysql = new mysql();
-// $sql   = 'SELECT st_classmark FROM exitem WHERE shuqian = \'3\'';
-// echo $mysql->Search($sql)[0]['st_classmark'];

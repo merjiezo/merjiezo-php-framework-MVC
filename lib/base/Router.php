@@ -34,6 +34,7 @@ class Router {
 		$className   = ucwords($arrURL[0]).'Controller';
 		$includePath = 'controller/'.ucwords($arrURL[0]).'Controller.php';
 		if (file_exists($includePath)) {
+			require ($includePath);
 			$ClassController            = new $className;
 			$ClassController->thisClass = $arrURL[0];
 			$classMethod                = ucwords($arrURL[1]);

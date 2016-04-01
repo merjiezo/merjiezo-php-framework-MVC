@@ -1,7 +1,7 @@
 <?php
 class AjaxuserController extends MController {
 
-	public function userbirthday() {
+	public function RouterUserbirthday() {
 		$modeltest = new modelTest();
 		$res       = $modeltest->findUsername('1');
 		if ($res) {

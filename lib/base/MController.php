@@ -1,5 +1,5 @@
 <?php
-class MController {
+class MController extends Object {
 
 	protected $defineIndex = 'index';
 	private $staticHTML    = 'view';
@@ -11,14 +11,6 @@ class MController {
 			return $this->readFile($this->defineIndex);
 		} else {
 			return $this->readFile($path);
-		}
-	}
-
-	public function MethodExist($className, $method) {
-		if (method_exists($className, $method)) {
-			return 1;
-		} else {
-			return 0;
 		}
 	}
 	//暂时拼接html，应该有控制，html、PHP皆可

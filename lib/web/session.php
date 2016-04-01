@@ -77,7 +77,7 @@ class Session {
 		return count($_SESSION);
 	}
 
-	private function initWebSiteSession() {
-		ini_set(varname, newvalue);
+	private function initWebSiteSession($day) {
+		session_cache_expire(60*24);
 	}
 }

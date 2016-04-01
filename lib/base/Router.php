@@ -1,5 +1,5 @@
 <?php
-class Router {
+class Router extends Object {
 
 	private static $_instance;
 
@@ -37,8 +37,8 @@ class Router {
 			require ($includePath);
 			$ClassController            = new $className;
 			$ClassController->thisClass = $arrURL[0];
-			$classMethod                = ucwords($arrURL[1]);
-			if ($ClassController->MethodExist($className, $classMethod)) {
+			$classMethod                = 'Router'.ucwords($arrURL[1]);
+			if ($ClassController->hasMethod($classMethod)) {
 				return $ClassController->$classMethod();
 			} else {
 				return $ClassController->notFound('500');

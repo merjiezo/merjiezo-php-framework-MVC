@@ -2,7 +2,9 @@
 /**
  * mysql Connection
  */
-class mysql {
+class mysql extends Object {
+
+	protected $connection;
 	/**
 	 *搜索工厂模式
 	 *@param sql
@@ -56,10 +58,12 @@ class mysql {
 	 *@return source $query sql
 	 **/
 	public function query($sql) {
-		$connection = $this->DatabaseConnection();
-		$this->dbSqlProtected($connection, $sql);
-		if (!($query = mysqli_query($connection, $sql))) {//使用mysql_query函数执行sql语句
-			$this->err($sql."<br />".mysqli_error($connection));//mysql_error 报错
+		if (!isset($this->connection) || empty($this->connection)) {
+			$this->DatabaseConnection();
+		}
+		$this->dbSqlProtected($sql);
+		if (!($query = mysqli_query($this->connection, $sql))) {//使用mysql_query函数执行sql语句
+			$this->err($sql."<br>".mysqli_error($this->connection));//mysql_error 报错
 		} else {
 			return $query;
 		}
@@ -98,8 +102,11 @@ class mysql {
 	 *@param  处理前的sql
 	 *@return 处理后的value
 	 **/
-	private function dbSqlProtected($connection, $value) {
-		$value = mysqli_real_escape_string($connection, $value);
+	private function dbSqlProtected($value) {
+		if (!isset($this->connection) || empty($this->connection)) {
+			$this->DatabaseConnection();
+		}
+		$value = mysqli_real_escape_string($this->connection, $value);
 		return $value;
 	}
 	/**
@@ -107,15 +114,14 @@ class mysql {
 	 *@return 连接资源
 	 **/
 	private function DatabaseConnection() {
-		require ('config/db.php');
-		$connection = mysqli_connect($db['host'], $db['user'], $db['password'], $db['dbName']);
-		if (!mysqli_query($connection, 'set names utf8')) {
-			mysqli_error($connection);
+		$db               = require (dirname(__FILE__).'/../../config/db.php');
+		$this->connection = mysqli_connect($db['host'], $db['user'], $db['password'], $db['dbName']);
+		if (!mysqli_query($this->connection, 'set names '.$db['charset'])) {
+			mysqli_error($this->connection);
 		}
-		if (mysqli_connect_error($connection)) {
-			return "Failed to connect to database: ".mysqli_connect_error();
+		if (mysqli_connect_error($this->connection)) {
+			$this->err("Failed to connect to database: ".mysqli_connect_error());
 		}
-		return $connection;
 	}
 
 	private function err($error) {

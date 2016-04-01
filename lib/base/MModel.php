@@ -1,6 +1,4 @@
 <?php
-$mysqlPath = dirname(__FILE__).'/../mysql.php';
-include ($mysqlPath);
 class MModel extends mysql {
 
 	protected $tableName = '';

@@ -1,7 +1,7 @@
 <?php
 class SiteController extends MController {
 
-	public function Index() {
+	public function RouterIndex() {
 		return $this->router('index');
 	}
 }

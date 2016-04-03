@@ -1,6 +1,8 @@
 <?php
 class Router extends Object {
 
+	public $catchAll;
+
 	private static $_instance;
 
 	private function __construct() {}
@@ -30,7 +32,10 @@ class Router extends Object {
 	}
 	//路由工厂模式
 	public function getControllerFactory() {
-		$arrURL      = $this->getURL();
+		$arrURL = $this->getURL();
+		if ($this->catchAll()) {
+			$arrURL = $this->catchAll();
+		}
 		$className   = ucwords($arrURL[0]).'Controller';
 		$includePath = 'controller/'.ucwords($arrURL[0]).'Controller.php';
 		if (file_exists($includePath)) {
@@ -45,6 +50,13 @@ class Router extends Object {
 			}
 		} else {
 			return '<h1>404</h1>';
+		}
+	}
+
+	public function catchAll() {
+		$base = require ('config/base.php');
+		if ($base['catchAll']) {
+			return explode("/", $base['catchAll']);
 		}
 	}
 

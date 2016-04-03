@@ -12,7 +12,7 @@ class PDOClass extends Object {
 	 **/
 	public function Search($sql) {
 		$query  = $this->query($sql);
-		$result = $this->findAll($query);
+		$result = $this->AllRow($query);
 		return $result;
 	}
 	/**

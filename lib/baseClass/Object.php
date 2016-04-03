@@ -14,7 +14,7 @@ class Object {
 	}
 
 	public function __call($name, $params) {
-		throw new UnknownMethodException('Calling unknown method: '.get_class($this)."::$name()");
+		die('Calling unknown method: '.get_class($this)."::$name()");
 	}
 	//是否有此属性
 	public function hasProperty($name, $checkVars = true) {

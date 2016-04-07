@@ -43,4 +43,13 @@ class MController extends Object {
 				break;
 		}
 	}
+
+	//xss protected
+	public function htmlencode($html, $doubleEncode = true) {
+		return htmlspecialchars($html, ENT_QUOTES|ENT_SUBSTITUTE, 'UTF-8', $doubleEncode);
+	}
+
+	public static function htmldecode($str) {
+		return htmlspecialchars_decode($str, ENT_QUOTES);
+	}
 }

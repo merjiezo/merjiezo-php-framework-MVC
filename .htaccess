@@ -1,0 +1,9 @@
+rewriteengine on
+RewriteRule ^(\w+)/(\w+)$ index.php?r=$1/$2
+#RewriteRule ^index/(\w+)-(\w+)$ index.php?$1=$2
+RewriteRule ^\d+$ index.php
+
+<Files .htaccess> 
+order allow,deny 
+deny from all 
+</Files> 

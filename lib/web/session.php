@@ -77,7 +77,14 @@ class Session {
 		return count($_SESSION);
 	}
 
-	private function initWebSiteSession($day) {
-		session_cache_expire(60*24);
+	public function initWebSiteSession($day, $arrSess) {
+		session_cache_expire(60*24*$day);
+		foreach ($arrSess as $key => $value) {
+			(!isset($key) && empty($key) && !isset($value) && empty($value))?
+			''
+			:$this->set($key, $value);
+		}
+		$this->close();
 	}
+
 }

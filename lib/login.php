@@ -10,7 +10,7 @@ class login extends MModel {
 		$this->username = $username;
 		$this->password = $password;
 		$this->EmptyOrNot();
-		$this->getDataFromSql();
+		$this->getDataFromSql($userId, $passId);
 
 	}
 

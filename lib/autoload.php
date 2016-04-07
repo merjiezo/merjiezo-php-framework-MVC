@@ -34,6 +34,7 @@ class autoLoad {
 		return isset($list)?$list:"";
 	}
 }
+
 $load   = new autoLoad();
 $allReq = $load->getLoad($list);
 foreach ($allReq as $requireDIR) {

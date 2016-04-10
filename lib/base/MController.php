@@ -16,17 +16,18 @@ class MController extends Object {
 	//暂时拼接html，应该有控制，html、PHP皆可
 	private function readFile($path) {
 		if ($path == 'error') {
-			return file_get_contents('view/layout/error.html');
+			return @file_get_contents('view/layout/error.html');
+			fclose();
 		}
 		if ($path == 'error500') {
-			return file_get_contents('view/layout/500.html');
+			return @file_get_contents('view/layout/500.html');
 		}
 		$path = $this->staticHTML.'/'.$this->thisClass.'/'.$path.'.html';
 		if (file_exists($path)) {
 			//读取文件、打印
-			return file_get_contents($path);
+			return @file_get_contents($path);
 		} else {
-			return file_get_contents('view/layout/error.html');
+			return @file_get_contents('view/layout/error.html');
 		}
 	}
 

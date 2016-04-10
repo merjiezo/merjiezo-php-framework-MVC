@@ -5,6 +5,7 @@ class modelTest extends MModel {
 		$this->tableName = __CLASS__;
 	}
 
+	//model demo
 	public function findUsername($id) {
 		return $this->findOnlyOne('username', 'id', $id);
 	}

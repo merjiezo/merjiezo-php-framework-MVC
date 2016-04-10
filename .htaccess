@@ -1,5 +1,5 @@
 rewriteengine on
-RewriteRule ^(\w+)$ index.php?r=$1
+RewriteRule ^(\w+)$ index.php?r=$1/index1
 RewriteRule ^(\w+)/(\w+)$ index.php?r=$1/$2
 RewriteRule ^\d+$ index.php
 

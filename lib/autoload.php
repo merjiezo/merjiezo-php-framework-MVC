@@ -13,6 +13,7 @@ class autoLoad {
 			foreach ($list as $value) {
 				array_push($allReq, $value);
 			}
+			closedir($handle);
 		}
 		if ($list) {
 			return $allReq;

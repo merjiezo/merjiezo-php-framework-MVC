@@ -75,4 +75,20 @@ class MModel extends mysql {
 		}
 	}
 
+	/**
+	 *object to array
+	 *@param  object
+	 *@return array
+	 **/
+	public function obj_arr($obj) {
+		if (is_object($obj)) {
+			$array = (array) $obj;
+		} if (is_array($obj)) {
+			foreach ($obj as $key => $value) {
+				$array[$key] = obj_arr($value);
+			}
+		}
+		return $array;
+	}
+
 }

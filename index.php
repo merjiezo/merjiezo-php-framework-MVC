@@ -3,4 +3,4 @@
 require (__DIR__ .'/lib/autoload.php');
 $website = Router::getinstance();
 $HTML    = $website->getControllerFactory();
-echo $HTML;
+echo $HTML?$HTML:'';

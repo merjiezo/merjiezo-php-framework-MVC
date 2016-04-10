@@ -30,7 +30,7 @@ class MController extends Object {
 		}
 	}
 
-	protected function notFound($error) {
+	public function notFound($error) {
 		switch ($error) {
 			case '404':
 				return $this->readFile('error');
@@ -51,5 +51,13 @@ class MController extends Object {
 
 	public static function htmldecode($str) {
 		return htmlspecialchars_decode($str, ENT_QUOTES);
+	}
+
+	public function __call($name, $params) {
+		if (substr($name, 0, 6) == 'Router') {
+			$this->notFound('404');
+		} else {
+			parent::__call($name, $params);
+		}
 	}
 }

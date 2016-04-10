@@ -46,10 +46,11 @@ class Router extends Object {
 			if ($ClassController->hasMethod($classMethod)) {
 				return $ClassController->$classMethod();
 			} else {
-				return $ClassController->notFound('500');
+				return $ClassController->notFound('404');
 			}
 		} else {
-			return '<h1>404</h1>';
+			$controller = new MController();
+			return $controller->notFound('404');
 		}
 	}
 

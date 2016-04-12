@@ -42,12 +42,26 @@ class Router extends Object {
 			require ($includePath);
 			$ClassController            = new $className;
 			$ClassController->thisClass = $arrURL[0];
-			$classMethod                = 'Router'.ucwords($arrURL[1]);
-			if ($ClassController->hasMethod($classMethod)) {
-				return $ClassController->$classMethod();
-			} else {
-				return $ClassController->notFound('404');
+			$arr                        = $ClassController->behaviors();
+			if (!$arr) {
+				$classMethod = 'Router'.ucwords($arrURL[1]);
+				if ($ClassController->hasMethod($classMethod)) {
+					return $ClassController->$classMethod();
+				} else {
+					return $ClassController->notFound('404');
+				}
 			}
+			foreach ($arr['rules'] as $value) {
+				if ($value['matchAuthority'] == 1 && $this->inRouteArr($value['actions'], $arrURL[1])) {
+					$classMethod = 'Router'.ucwords($arrURL[1]);
+					if ($ClassController->hasMethod($classMethod)) {
+						return $ClassController->$classMethod();
+					} else {
+						return $ClassController->notFound('404');
+					}
+				}
+			}
+			return $ClassController->notFound('404');
 		} else {
 			$controller = new MController();
 			return $controller->notFound('404');
@@ -59,6 +73,15 @@ class Router extends Object {
 		if ($base['catchAll']) {
 			return explode("/", $base['catchAll']);
 		}
+	}
+
+	private function inRouteArr($action, $control) {
+		foreach ($action as $value) {
+			if ($value == $control) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 }

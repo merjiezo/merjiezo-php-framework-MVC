@@ -4,11 +4,6 @@
  */
 class Session {
 
-	public function __construct() {
-		$this->initWebSiteSession();
-		register_shutdown_function($this, 'close');
-	}
-
 	//打开session
 	public function open() {
 		if ($this->getIsActive()) {
@@ -84,6 +79,9 @@ class Session {
 			''
 			:$this->set($key, $value);
 		}
+	}
+
+	public function __destruct() {
 		$this->close();
 	}
 

@@ -1,12 +1,12 @@
 <?php
 class MController extends Object {
 
-	protected $defineIndex = 'index';
-	private $staticHTML    = 'view';
-	public $thisClass      = '';
+	public $defineIndex = 'index';
+	private $staticHTML = 'view';
+	public $thisClass   = '';
 
 	//传入路径，打印出页面
-	protected function router($path) {
+	public function router($path) {
 		if (!isset($path) || empty($path)) {
 			return $this->readFile($this->defineIndex);
 		} else {
@@ -60,5 +60,22 @@ class MController extends Object {
 		} else {
 			parent::__call($name, $params);
 		}
+	}
+
+	protected function getSession($key, $status) {
+		$session   = new Session();
+		$authority = $session->get($key, '');
+		if ($status == 0) {
+			if (!$authority) {
+				return 1;
+			}
+			return 0;
+		}
+		return ((int) $authority == $status)?1:0;
+	}
+
+	//the controller's method
+	public function behaviors() {
+		return [];
 	}
 }

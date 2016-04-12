@@ -1,7 +1,11 @@
 rewriteengine on
+RewriteRule ^$ index.php?r=site/index
 RewriteRule ^(\w+)$ index.php?r=$1/index1
-RewriteRule ^(\w+)/(\w+)$ index.php?r=$1/$2
-RewriteRule ^\d+$ index.php
+RewriteRule ^(\w+)/(\w+)$  index.php?r=$1/$2
+
+# if a directory or a file exists, use it directly
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
 
 <Files .htaccess>
 	order allow,deny

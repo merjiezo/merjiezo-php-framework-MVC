@@ -1,5 +1,6 @@
 <?php
 return [
 	'catchAll'      => '',
-	'loginFailHref' => 'site/index'
+	'loginFailHref' => 'site/index',
+	'cache'         => ['site/index'.'site/try1'],
 ];

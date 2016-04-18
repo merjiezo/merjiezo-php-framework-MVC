@@ -4,39 +4,38 @@
  */
 class Query {
 
-	private $queryWord;
+	//this is only used in search sql
+	private $sql = [
+		"select"  => "",
+		"from"    => "",
+		"where"   => "",
+		"groupby" => "",
+		"having"  => "",
+		"between" => "",
+		"orderby" => "",
+		"join"    => "",
+		"limit"   => "",
 
-	public $select = '';
+	];
 
-	public $from = '';
+	private $from = '';
 
-	public $where = '';
-
-	public $groupby = '';
-
-	public $having = '';
-
-	public $between = '';
-
-	public $orderby = '';
-
-	public $join = '';
-
-	public $limit = '';
+	private $where = '';
 
 	public function select($select = '*') {
 		if (!is_array($select)) {
-			$select = preg_split('/\s*,\s*/', trim($select), -1, PREG_SPLIT_NO_EMPTY);
+			$this->sql['select'] = $select;
+		} else {
+			$this->sql['select'] = implode(',', $select);
 		}
-		$this->select = 'SELECT '.$select;
 		return $this;
 	}
 
 	public function from($table) {
 		if (!is_array($table)) {
-			$table = preg_split('/\s*,\s*/', trim($table), -1, PREG_SPLIT_NO_EMPTY);
+			$this->sql['from'] = 'FROM '.$table;
+			$this->from        = 'FROM '.$table;
 		}
-		$this->from = ' FROM '.$table;
 		return $this;
 	}
 
@@ -44,14 +43,18 @@ class Query {
 		$where = '';
 		if (is_array($group)) {
 			foreach ($group as $key => $value) {
-				$where .= 'AND '.$key.'=\''.$value.'\'';
+				$where .= ' AND '.$key.'=\''.$value.'\'';
 			}
-			$where       = substr($where, 4);
-			$where       = ' WHERE '.$where;
-			$this->where = addslashes($where);
+			$where              = substr($where, 4);
+			$where              = 'WHERE '.$where;
+			$this->sql['where'] = addslashes($where);
+			$this->where        = addslashes($where);
+
 		}
 		if (is_string($group)) {
-			$this->where = addslashes($group);
+			$this->sql['where'] = addslashes($group);
+			$this->where        = addslashes($where);
+
 		}
 		return $this;
 	}
@@ -65,7 +68,7 @@ class Query {
 	}
 
 	public function orderby($keyArr) {
-		$orderby = ' ORDER BY ';
+		$orderby = 'ORDER BY ';
 	}
 
 	public function join() {
@@ -73,12 +76,15 @@ class Query {
 	}
 
 	public function limit($page, $count) {
-		$limit = ' LIMIT ';
+		$limit = 'LIMIT ';
 		$num   = $page*$count-$count;
-		$this->limit .= $num.', '.$count;
+		$limit .= $num.', '.$count;
+		$this->sql['limit'] = $limit;
+		return $this;
 	}
 
 	public function sum() {
+		$this->sql['select'] = 'SUM('.$this->sql['select'].')';
 		return $this;
 	}
 
@@ -87,15 +93,45 @@ class Query {
 	}
 
 	public function min() {
+		$this->sql['select'] = 'MIN('.$this->sql['select'].')';
 		return $this;
 	}
 
 	public function max() {
+		$this->sql['select'] = 'MAX('.$this->sql['select'].')';
 		return $this;
 	}
 
 	public function count() {
+		$this->sql['select'] = 'COUNT('.$this->sql['select'].')';
 		return $this;
+	}
+
+	public function first() {
+		$this->sql['select'] = 'FIRST('.$this->sql['select'].')';
+		return $this;
+	}
+
+	public function last() {
+		$this->sql['select'] = 'LAST('.$this->sql['select'].')';
+		return $this;
+	}
+
+	public function search() {
+		if ($this->sql['select'] && $this->sql['from']) {
+			$this->haveVal();
+			return 'SELECT '.implode(' ', $this->sql);
+		}
+		return false;
+	}
+
+	private function haveVal() {
+		$query = [];
+		foreach ($this->sql as $key => $value) {
+			if (!$value) {
+				unset($this->sql[$key]);
+			}
+		}
 	}
 
 }

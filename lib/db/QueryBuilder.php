@@ -17,7 +17,7 @@ class QueryBuilder extends Query {
 	public function insert($table) {
 		$insert = 'INSERT INTO ';
 		$insert .= $table;
-		$this->insert = addslashes($table);
+		$this->insert = $insert.addslashes($table);
 		return $this;
 	}
 
@@ -28,18 +28,18 @@ class QueryBuilder extends Query {
 	}
 
 	public function update($table) {
-		$update = 'UPDATE '.$table;
+		$this->update = 'UPDATE '.$table;
 		return $this;
 
 	}
 
 	public function set($arr) {
-		$set = ' SET '.$this->sqlArrToString($arr);
+		$this->set = 'SET '.$this->sqlArrToString($arr);
 		return $this;
 	}
 
-	public function delete() {
-		$delete       = 'DELETE';
+	public function delete($table) {
+		$delete       = 'DELETE FROM '.$table;
 		$this->delete = $delete;
 		return $this;
 	}
@@ -51,14 +51,14 @@ class QueryBuilder extends Query {
 		}
 		$keys   = implode(',', $keyArr);
 		$values = implode(',', $keyValue);
-		return '('.$key.') VALUE ('.$keyValue.')';
+		return '('.$keys.') VALUE ('.$values.')';
 	}
 
 	private function sqlArrToString($group) {
 		$str = '';
 		if (is_array($group)) {
 			foreach ($group as $key => $value) {
-				$str .= ', `'.$key.'`=\''.$value.'\'';
+				$str .= ', '.$key.'=\''.$value.'\'';
 			}
 			$str = substr($str, 2);
 			$str = addslashes($str);
@@ -69,12 +69,30 @@ class QueryBuilder extends Query {
 		return $str;
 	}
 
-	public function createCommend() {
-		if ($this->select || $this->insert || $this->update || $this->delete) {
-			return false;
+	public function sqlVal() {
+		if ($this->insert && $this->value) {
+			return $this->insert.' '.$this->value;
+		} elseif ($this->update && $this->set) {
+			// $result = $this->where?' '.$this->where:'';
+			echo $this->where;
+			return $this->update.' '.$this->set.$this->where;
+		} elseif ($this->delete) {
+			return $this->delete.' '.$this->where;
 		} else {
-
+			return $this->search();
 		}
+		return false;
 	}
 
 }
+
+//update 测试有问题，下次解决，现在要复习！！！！
+
+$query = new QueryBuilder();
+echo $query->update('qwe')->set([
+		'qwe' => 'qwe',
+		'rty' => 'rty',
+	])->where([
+		'qwe' => 'qwe',
+		'rty' => 'rty',
+	])->sqlVal();

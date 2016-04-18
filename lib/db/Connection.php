@@ -24,6 +24,7 @@ class mysqliConnection {
 		} else {
 			$this->getMySqlInfo();
 			$this->open();
+			return $connection;
 		}
 	}
 
@@ -66,10 +67,10 @@ class mysqliConnection {
 		return true;
 	}
 
-	public function __destruct() {
-		$this->connection = null;
-		if ($this->connection) {
-			die('close database failed, place try again later');
-		}
-	}
+	// public function __destruct() {
+	// 	$this->connection = null;
+	// 	if ($this->connection) {
+	// 		die('close database failed, place try again later');
+	// 	}
+	// }
 }

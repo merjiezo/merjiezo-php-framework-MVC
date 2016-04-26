@@ -1,76 +1,96 @@
 <?php
 /**
- *
+ * PDO connection
  */
-class mysqliConnection {
+class Connection {
 
-	public $connection;
+	//PDO to data connection STATIC$
+	public $connect;
 
+	//PDO FIRST in
+	private $dsn;
+	//SECOND
 	private $user;
-
-	private $password;
-
-	private $table;
-
-	private $host;
+	//THIRD
+	private $pass;
 
 	private $charset;
 
-	private $error;
-
-	public function isConnect() {
-		if ($connection !== null) {
-			return $connection;
+	public function getConnect() {
+		$this->getInfo();
+		if ($this->isActive()) {
+			return $this->connect;
 		} else {
-			$this->getMySqlInfo();
-			$this->open();
-			return $connection;
+			$this->nowConnect();
+			return $this->connect;
 		}
 	}
 
-	public function disConnect() {
-		if ($this->connection) {
-			$this->connection = null;
-			return true;
+	public function createCommand($sql) {
+		//first connect the db
+		$command = new Command([
+				'db'  => $this->getConnect(),
+				'sql' => $sql,
+			]);
+		return $command;
+	}
+
+	//if there is active
+	public function isActive() {
+		return $this->connect;
+	}
+
+	//close connection
+	public function close() {
+		if ($this->isActive()) {
+			$this->connect = null;
 		}
 	}
 
-	private function getMySqlInfo() {
-		$db             = require (dirname(__FILE__).'/../../config/db.php');
-		$this->user     = $db['user'];
-		$this->password = $db['password'];
-		$this->table    = $db['dbName'];
-		$this->host     = $db['host'];
-		$this->charset  = $db['charset'];
+	private function err($err) {
+		die('errInfo: '+$err);
 	}
 
-	private function open() {
-		$this->connection = mysqli_connect($this->host, $this->user, $this->password, $this->table);
-		if (!$this->checkConnect() && !$this->checkCharset()) {
-			die($this->error);
+	//get infomation from config
+	private function getInfo() {
+		$db = require (dirname(__FILE__).'/../../config/db.php');
+		if ($db['dsn'] && $db['user'] && $db['password']) {
+			$this->dsn     = $db['dsn'];
+			$this->user    = $db['user'];
+			$this->pass    = $db['password'];
+			$this->charset = $db['charset']?$db['charset']:'utf8';
+		} else {
+			$this->err('One of the PDO::DB Parameter is empty!');
 		}
 	}
 
-	private function checkCharset() {
-		if (!mysqli_query($this->connection, 'set names '.$this->charset)) {
-			$this->error = mysqli_error($this->connection);
-			return false;
+	private function nowConnect() {
+		try {
+			$this->connect = new PDO($this->dsn, $this->user, $this->pass);
+		} catch (PDOException $e) {
+			$this->err($e->getMessage());
 		}
-		return true;
+		if (!$this->connect) {
+			$this->err('PDO connect error');
+		}
+		$this->connect->exec('SET NAMES '.$this->charset);
+		$this->connect->getAttribute(constant("PDO::ATTR_SERVER_VERSION"));
 	}
 
-	private function checkConnect() {
-		if (mysqli_connect_error($this->connection)) {
-			$this->error = "Failed to connect to database: ".mysqli_connect_error();
-			return false;
-		}
-		return true;
+	public function __destruct() {
+		$this->close();
 	}
 
-	// public function __destruct() {
-	// 	$this->connection = null;
-	// 	if ($this->connection) {
-	// 		die('close database failed, place try again later');
-	// 	}
-	// }
 }
+
+$sql     = 'SELECT * FROM studentlist';
+$connect = new Connection();
+print_r($connect->createCommand($sql)->queryOne());
+
+echo $connect->createCommand()->update('studentlist', [
+		'phone' => '13012882930',
+	], [
+		'St_classmark' => '6',
+		'phone'        => '7',
+		'status'       => '2',
+	]);

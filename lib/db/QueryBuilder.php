@@ -15,8 +15,7 @@ class QueryBuilder extends Query {
 	private $delete;
 
 	public function insert($table) {
-		$insert = 'INSERT INTO ';
-		$insert .= $table;
+		$insert       = 'INSERT INTO ';
 		$this->insert = $insert.addslashes($table);
 		return $this;
 	}
@@ -61,10 +60,10 @@ class QueryBuilder extends Query {
 				$str .= ', '.$key.'=\''.$value.'\'';
 			}
 			$str = substr($str, 2);
-			$str = addslashes($str);
+			$str = $str;
 		}
 		if (is_string($group)) {
-			$str = addslashes($group);
+			$str = $group;
 		}
 		return $str;
 	}
@@ -73,26 +72,13 @@ class QueryBuilder extends Query {
 		if ($this->insert && $this->value) {
 			return $this->insert.' '.$this->value;
 		} elseif ($this->update && $this->set) {
-			// $result = $this->where?' '.$this->where:'';
-			echo $this->where;
+			$result = $this->where?$this->where:'';
 			return $this->update.' '.$this->set.$this->where;
 		} elseif ($this->delete) {
 			return $this->delete.' '.$this->where;
 		} else {
 			return $this->search();
 		}
-		return false;
 	}
 
 }
-
-//update 测试有问题，下次解决，现在要复习！！！！
-
-$query = new QueryBuilder();
-echo $query->update('qwe')->set([
-		'qwe' => 'qwe',
-		'rty' => 'rty',
-	])->where([
-		'qwe' => 'qwe',
-		'rty' => 'rty',
-	])->sqlVal();

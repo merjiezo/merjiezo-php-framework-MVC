@@ -3,24 +3,24 @@ class SiteController extends MController {
 
 	//rules is the function that cannot into this website page
 	//Guest is can show method
-	public function behaviors() {
-		return [
-			'rules' => [
-				[
-					'actions'        => ['act22'],
-					'matchAuthority' => $this->getSession('status', 1),
-				],
-				[
-					'actions'        => ['authority1'],
-					'matchAuthority' => $this->getSession('status', 2),
-				],
-				[
-					'actions'        => ['authority1', 'act22'],
-					'matchAuthority' => $this->getSession('status', 0),
-				],
-			],
-		];
-	}
+	// public function behaviors() {
+	// 	return [
+	// 		'rules' => [
+	// 			[
+	// 				'actions'        => ['act22'],
+	// 				'matchAuthority' => $this->getSession('status', 1),
+	// 			],
+	// 			[
+	// 				'actions'        => ['authority1'],
+	// 				'matchAuthority' => $this->getSession('status', 2),
+	// 			],
+	// 			[
+	// 				'actions'        => ['authority1', 'act22'],
+	// 				'matchAuthority' => $this->getSession('status', 0),
+	// 			],
+	// 		],
+	// 	];
+	// }
 
 	public function RouterIndex() {
 		return $this->router('index');

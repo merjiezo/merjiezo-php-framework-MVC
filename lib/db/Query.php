@@ -5,7 +5,7 @@
 class Query {
 
 	//this is only used in search sql
-	private $sql = [
+	protected $sql = [
 		"select"  => "",
 		"from"    => "",
 		"where"   => "",
@@ -18,9 +18,7 @@ class Query {
 
 	];
 
-	private $from = '';
-
-	private $where = '';
+	protected $where = '';
 
 	public function select($select = '*') {
 		if (!is_array($select)) {
@@ -34,7 +32,6 @@ class Query {
 	public function from($table) {
 		if (!is_array($table)) {
 			$this->sql['from'] = 'FROM '.$table;
-			$this->from        = 'FROM '.$table;
 		}
 		return $this;
 	}
@@ -47,13 +44,13 @@ class Query {
 			}
 			$where              = substr($where, 4);
 			$where              = 'WHERE '.$where;
-			$this->sql['where'] = addslashes($where);
-			$this->where        = addslashes($where);
+			$this->sql['where'] = $where;
+			$this->where        = ' '.$where;
 
 		}
 		if (is_string($group)) {
-			$this->sql['where'] = addslashes($group);
-			$this->where        = addslashes($where);
+			$this->sql['where'] = $group;
+			$this->where        = $where;
 
 		}
 		return $this;
@@ -69,6 +66,13 @@ class Query {
 
 	public function orderby($keyArr) {
 		$orderby = 'ORDER BY ';
+		if (is_array($keyArr)) {
+			$orderby .= implode(', ', $keyArr);
+		} elseif (is_string($keyArr)) {
+			$orderby .= $keyArr;
+		}
+		$this->sql['orderby'] = $orderby;
+		return $this;
 	}
 
 	public function join() {
@@ -125,7 +129,7 @@ class Query {
 		return false;
 	}
 
-	private function haveVal() {
+	protected function haveVal() {
 		$query = [];
 		foreach ($this->sql as $key => $value) {
 			if (!$value) {

@@ -16,6 +16,37 @@
 * public文件夹：     静态文件存放位置
 * view文件夹：       html页面、缓存文件和布局文件存放位置
 
+##角色控制（代码实现简单的角色控制）
+
+```php
+//rules is the function that cannot into this website page
+//Guest is can show method
+
+ public function behaviors() {
+  return [
+      'rules' => [
+          [
+              'actions'        => ['act22'],
+              'matchAuthority' => $this->getSession('status', 1),
+          ],
+          [
+              'actions'        => ['authority1'],
+              'matchAuthority' => $this->getSession('status', 2),
+          ],
+          //游客
+          [
+              'actions'        => ['authority1', 'act22'],
+              'matchAuthority' => $this->getSession('status', 0),
+          ],
+      ],
+  ];
+ }
+
+```
+
+##路由的catchAll
+这是维护模式，默认为空，不为空的话，就跳转到指定页面！！！！
+
 ## controller文件夹
 
 请先导入这个文件：include ('lib/MController.php');
@@ -35,12 +66,44 @@
 ＊这个文件下所有的文件命名方式是更具数据库表内的名字命名
 
 注：一定要加上构造方法：（自动获取表名）
+
+```php
 	public function __construct() {
 		$this->tableName = __CLASS__;
 	}
-
+```
 models下的方法：
 findOnlyOne方法、fingOneRecord、encrypt、jsonGet、Search、InsertInto、UpdateData、deleteOneRecord等。
+
+###下面介绍罪行编写的PDO连接如何使用
+
+```php
+$sql     = 'SELECT * FROM studentlist';
+$connect = new Connection();
+print_r($connect->createCommand($sql)->queryOne());
+
+//获取所有
+$connect->createCommand($sql)->queryAll();
+
+//获取一条记录
+$connect->createCommand($sql)->queryOne();
+
+$connect->createCommand()->insert('tableName', [
+        'Column' => '1',
+        'name'   => 'merjiezo',
+    ]);
+
+$connect->createCommand()->update('tableName', [
+        'Column' => '1',
+    ], [
+        'id' => '6',
+    ]);
+
+$connect->createCommand()->delete('tableName', [
+        'Column' => '1',
+        'name'   => 'merjiezo',
+    ]);
+```
 
 ## 当然，现在就完成了部分功能，还有更多功能等待开发
 

@@ -75,7 +75,7 @@
 models下的方法：
 findOnlyOne方法、fingOneRecord、encrypt、jsonGet、Search、InsertInto、UpdateData、deleteOneRecord等。
 
-###下面介绍罪行编写的PDO连接如何使用
+###下面介绍最新编写的PDO连接如何使用
 
 ```php
 $sql     = 'SELECT * FROM studentlist';

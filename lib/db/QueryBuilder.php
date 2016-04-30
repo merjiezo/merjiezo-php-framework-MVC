@@ -16,7 +16,7 @@ class QueryBuilder extends Query {
 
 	public function insert($table) {
 		$insert       = 'INSERT INTO ';
-		$this->insert = $insert.addslashes($table);
+		$this->insert = $insert.$table;
 		return $this;
 	}
 

@@ -1,4 +1,5 @@
 <?php
+
 class MController extends Object {
 
 	public $defineIndex = 'index';

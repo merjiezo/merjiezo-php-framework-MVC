@@ -1,4 +1,5 @@
 <?php
+
 class Router extends Object {
 
 	public $catchAll;
@@ -39,7 +40,6 @@ class Router extends Object {
 		$className   = ucwords($arrURL[0]).'Controller';
 		$includePath = 'controller/'.ucwords($arrURL[0]).'Controller.php';
 		if (file_exists($includePath)) {
-			require ($includePath);
 			$ClassController            = new $className;
 			$ClassController->thisClass = $arrURL[0];
 			$arr                        = $ClassController->behaviors();

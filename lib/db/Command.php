@@ -26,10 +26,6 @@ class Command {
 		return $this->sql;
 	}
 
-	public function getpdo() {
-		return $this->pdo;
-	}
-
 	//Connection.php to new a command
 	public function __construct($arr) {
 		$this->sql         = $arr['sql']?$arr['sql']:'';

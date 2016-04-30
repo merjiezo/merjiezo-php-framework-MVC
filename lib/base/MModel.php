@@ -1,4 +1,5 @@
 <?php
+
 class MModel extends mysql {
 
 	protected $tableName = '';
@@ -83,7 +84,7 @@ class MModel extends mysql {
 	public function obj_arr($obj) {
 		if (is_object($obj)) {
 			$array = (array) $obj;
-		} if (is_array($obj)) {
+		}if (is_array($obj)) {
 			foreach ($obj as $key => $value) {
 				$array[$key] = obj_arr($value);
 			}

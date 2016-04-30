@@ -1,4 +1,5 @@
 <?php
+
 class cookie {
 	//cookie name
 	public $name = '';
@@ -8,9 +9,9 @@ class cookie {
 	public $time = 0;
 
 	public function __construct($name = '', $value = '', $time) {
-		$this->name = $name;
+		$this->name  = $name;
 		$this->value = (String) $value;
-		$this->time = $time;
+		$this->time  = $time;
 	}
 
 	/**
@@ -34,7 +35,6 @@ class cookie {
 	public function getCount() {
 		return count($_COOKIE);
 	}
-
 
 	//jiami
 	public function base64_encode($data) {

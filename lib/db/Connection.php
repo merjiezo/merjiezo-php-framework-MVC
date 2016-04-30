@@ -82,15 +82,3 @@ class Connection {
 	}
 
 }
-
-$sql     = 'SELECT * FROM studentlist';
-$connect = new Connection();
-print_r($connect->createCommand($sql)->queryOne());
-
-echo $connect->createCommand()->update('studentlist', [
-		'phone' => '13012882930',
-	], [
-		'St_classmark' => '6',
-		'phone'        => '7',
-		'status'       => '2',
-	]);

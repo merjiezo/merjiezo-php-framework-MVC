@@ -1,5 +1,5 @@
 <?php
-class upload {
+class Upload {
 	protected $fileName;
 	protected $maxSize;
 	protected $dontallowMime;

@@ -40,7 +40,7 @@ class Query extends Object {
 		$where = '';
 		if (is_array($group)) {
 			foreach ($group as $key => $value) {
-				$where .= ' AND '.$key.'=\''.$value.'\'';
+				$where .= ' AND '.$key.'=\''.addslashes($value).'\'';
 			}
 			$where              = substr($where, 4);
 			$where              = 'WHERE '.$where;

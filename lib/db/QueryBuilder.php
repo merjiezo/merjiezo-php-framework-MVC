@@ -46,7 +46,7 @@ class QueryBuilder extends Query {
 	private function insertArrToString($arr) {
 		foreach ($arr as $key => $value) {
 			$keyArr[]   = '`'.$key.'`';
-			$keyValue[] = '\''.$value.'\'';
+			$keyValue[] = '\''.addslashes($value).'\'';
 		}
 		$keys   = implode(',', $keyArr);
 		$values = implode(',', $keyValue);
@@ -57,7 +57,7 @@ class QueryBuilder extends Query {
 		$str = '';
 		if (is_array($group)) {
 			foreach ($group as $key => $value) {
-				$str .= ', '.$key.'=\''.$value.'\'';
+				$str .= ', '.$key.'=\''.addslashes($value).'\'';
 			}
 			$str = substr($str, 2);
 			$str = $str;

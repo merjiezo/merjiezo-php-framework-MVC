@@ -13,9 +13,6 @@ class Command extends Object {
 	//the pdo statement
 	private $pdoStmt;
 
-	//the sql chain word
-	private $queryBuider;
-
 	//the last db select is in here
 	private $lastCommandDb;
 
@@ -28,9 +25,8 @@ class Command extends Object {
 
 	//Connection.php to new a command
 	public function __construct($arr) {
-		$this->sql         = $arr['sql']?$arr['sql']:'';
-		$this->queryBuider = new QueryBuilder();
-		$this->pdo         = $arr['db'];
+		$this->sql = $arr['sql']?$arr['sql']:'';
+		$this->pdo = $arr['db'];
 	}
 
 	public function queryAll($fetchMode = null) {
@@ -43,19 +39,23 @@ class Command extends Object {
 
 	//insert into database
 	public function insert($table, $arr) {
-		$this->sql = $this->queryBuider->insert($table)->value($arr)->sqlVal();
+		$this->sql = Merj::sql()->insert($table)->value($arr)->sqlVal();
 		return $this->transction();
 	}
 
 	//update the database
 	public function update($table, $arr, $where) {
-		$this->sql = $this->queryBuider->update($table)->set($arr)->where($where)->sqlVal();
+		$this->sql = Merj::sql()->update($table)->set($arr)->where($where)->sqlVal();
 		return $this->transction();
+	}
+
+	public function updateTrans($sqlArr) {
+		return $this->transctions($sqlArr);
 	}
 
 	//delete one record
 	public function delete($table, $whereArr) {
-		$this->sql = $this->queryBuider->delete($table)->where($whereArr)->sqlVal();
+		$this->sql = Merj::sql()->delete($table)->where($whereArr)->sqlVal();
 		return $this->transction();
 	}
 
@@ -68,7 +68,8 @@ class Command extends Object {
 			$result = $this->execute($method);
 			return $result?$result:'';
 		} else {
-			return 'Sql or PDO is empty; The sql is '.$this->sql;
+			throw new PDOException('Sql or PDO is empty; The sql is '.$this->sql);
+			return false;
 		}
 	}
 
@@ -88,11 +89,11 @@ class Command extends Object {
 			$pdoStmt->execute();
 			$res = $pdoStmt->$method($this->dataType);
 			if (!$res) {
-				return 'SQL Error, <br/> SQL is::'.$this->sql;
+				return false;
 			}
 			return $res;
 		} else {
-			return 'PDO is Fail to use execute before prepare!';
+			throw new PDOException('PDO is Fail to use execute before prepare!');
 		}
 	}
 
@@ -108,7 +109,25 @@ class Command extends Object {
 			return $res;
 		} catch (PDOException $e) {
 			$this->pdo->rollback();
-			return $e->getMessage();
+			return false;
+		}
+	}
+
+	//change it lately
+	private function transctions($sqlArr) {
+		try {
+			$this->pdo->beginTransaction();
+			foreach ($sqlArr as $value) {
+				$res = $this->pdo->exec($value);
+				if ($res == 0) {
+					throw new PDOException('DB Error::Fail to change the database!!  The sql is: '.$this->sql);
+				}
+			}
+			$this->pdo->commit();
+			return $res;
+		} catch (PDOException $e) {
+			$this->pdo->rollback();
+			return false;
 		}
 	}
 }

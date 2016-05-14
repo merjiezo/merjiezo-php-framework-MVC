@@ -10,6 +10,8 @@ class Merj {
 
 	public static $alreadyReq = [];
 
+	// public static $app = Connection::getinstance();
+
 	public static function autoLoad($className) {
 		$file = self::$classPath[$className];
 		if (!isset(self::$classPath[$className])) {
@@ -30,6 +32,15 @@ class Merj {
 			die('This is not a file or this is not Exist'.$file);
 		}
 		require ($file);
+	}
+
+	public static function db() {
+		$con = Connection::getinstance();
+		return $con;
+	}
+
+	public static function sql() {
+		return new QueryBuilder();
 	}
 }
 

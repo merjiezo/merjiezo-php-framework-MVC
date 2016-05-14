@@ -2,15 +2,15 @@
 /**
  * log in method
  */
-class login extends MModel {
+class Login extends MModel {
 
 	private $user            = '';
 	private $pass            = '';
-	private $table           = '';
 	private $userKeyName     = '';
 	private $passwordKeyName = '';
 	private $wrongTime       = 5;
 	protected $error         = '';
+	protected $tableName     = '';
 
 	protected function getLoginData($user, $pass, $userKeyName, $passwordKeyName, $wrongTime = 5) {
 		$this->user            = $user;
@@ -47,7 +47,8 @@ class login extends MModel {
 	}
 
 	private function checkExist() {
-		$result = $this->findOneRecord($this->userKeyName, $this->user);
+		$sql    = $this->getSql();
+		$result = Merj::db()->createCommand($sql)->queryOne();
 		if ($result) {
 			return $result;
 		}
@@ -93,6 +94,17 @@ class login extends MModel {
 	public function checkExistWithSql($sql) {
 		$result = $this->Search($sql);
 		$this->EmptySearch($result);
+	}
+
+	/**
+	 *@return sql Words
+	 **/
+	protected function getSql() {
+		$QueryBuilder = new QueryBuilder();
+		$sql          = $QueryBuilder->select([$this->userKeyName, $this->passwordKeyName])->from($table)->where([
+				$this->userKeyName     => $this->user,
+				$this->passwordKeyName => $this->pass, ])->sqlVal();
+		return $sql;
 	}
 
 }

@@ -1,6 +1,6 @@
 <?php
 
-class cookie {
+class Cookie {
 	//cookie name
 	public $name = '';
 	//defult value

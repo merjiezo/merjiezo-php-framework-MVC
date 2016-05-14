@@ -16,6 +16,18 @@ class Connection extends Object {
 
 	private $charset;
 
+	private static $_instance;
+
+	private function __construct() {}
+	private function __clone() {}
+	//单例
+	public static function getinstance() {
+		if (!(self::$_instance instanceof self)) {
+			self::$_instance = new self();
+		}
+		return self::$_instance;
+	}
+
 	public function getConnect() {
 		$this->getInfo();
 		if ($this->isActive()) {

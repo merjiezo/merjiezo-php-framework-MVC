@@ -1,8 +1,9 @@
 <?php
-class modelTest extends login {
+class modelTest extends Login {
 
 	public function __construct() {
 		$this->tableName = __CLASS__;
+		$this->primKey   = 'id';
 	}
 
 	public function handlelogin($user, $pass) {
@@ -19,7 +20,15 @@ class modelTest extends login {
 
 	//model demo
 	public function findUsername($id) {
-		return $this->findOnlyOne('username', 'id', $id);
+		return $this->findBySql('SELECT * FROM modelTest WHERE id = \'1\'');
+	}
+
+	public function changeName() {
+		$sqlArr = [
+			'UPDATE modelTest SET username=\'la\' WHERE id=\'2\'',
+			'UPDATE modelTest SET username=\'lalala\' WHERE id=\'3\'',
+		];
+		return $this->updateTrans($sqlArr);
 	}
 
 }

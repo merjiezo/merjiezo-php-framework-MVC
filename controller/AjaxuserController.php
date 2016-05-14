@@ -3,14 +3,39 @@ class AjaxuserController extends MController {
 
 	//connect mysql demo
 	public function RouterUserbirthday() {
-		$conn = new Connection();
-		$res  = $conn->createCommand('SELECT username FROM modelTest WHERE id = \'1\'')->queryAll();
-		;
-		if ($res) {
-			echo $res[0]['username'];
+		$model   = new modelTest();
+		$results = $model->findOneRecord('1');
+		if ($results) {
+			echo $results;
 		} else {
 			echo "No found";
 		}
+	}
+
+	public function RouterInsert() {
+		$arr['username'] = 'mike';
+		$arr['password'] = '123456';
+		$arr['status']   = '1';
+		$model           = new modelTest();
+		var_dump($model->insertOne($arr));
+	}
+
+	public function RouterUpdate() {
+		$arr['username'] = 'alice';
+		$model           = new modelTest();
+		var_dump($model->updateOneRec($arr, 3));
+	}
+
+	public function RouterUpdateTrans() {
+		// $arr['username'] = 'alice';
+		$model = new modelTest();
+		var_dump($model->changeName());
+	}
+
+	public function RouterDelete() {
+		$arr['id'] = '2';
+		$model     = new modelTest();
+		var_dump($model->deleteOne($arr, '1'));
 	}
 
 }

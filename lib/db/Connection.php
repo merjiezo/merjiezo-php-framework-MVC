@@ -2,7 +2,7 @@
 /**
  * PDO connection
  */
-class Connection {
+class Connection extends Object {
 
 	//PDO to data connection STATIC$
 	public $connect;
@@ -26,7 +26,7 @@ class Connection {
 		}
 	}
 
-	public function createCommand($sql) {
+	public function createCommand($sql = null) {
 		//first connect the db
 		$command = new Command([
 				'db'  => $this->getConnect(),

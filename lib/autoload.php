@@ -11,7 +11,6 @@ class Merj {
 	public static $alreadyReq = [];
 
 	public static function autoLoad($className) {
-		// var_dump($className);
 		$file = self::$classPath[$className];
 		if (!isset(self::$classPath[$className])) {
 			//if there is model or controller

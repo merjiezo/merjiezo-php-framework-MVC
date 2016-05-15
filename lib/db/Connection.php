@@ -7,6 +7,8 @@ class Connection extends Object {
 	//PDO to data connection STATIC$
 	public $connect;
 
+	private $db;
+
 	//PDO FIRST in
 	private $dsn;
 	//SECOND
@@ -15,6 +17,8 @@ class Connection extends Object {
 	private $pass;
 
 	private $charset;
+
+	private $PDOSlaves;
 
 	private static $_instance;
 
@@ -33,8 +37,20 @@ class Connection extends Object {
 		if ($this->isActive()) {
 			return $this->connect;
 		} else {
-			$this->nowConnect();
+			$this->connect = $this->nowConnect();
 			return $this->connect;
+		}
+	}
+
+	public function getSlavesConnect($num) {
+		$this->setToSlaves($num);
+		$key = 'slave'.$num;
+		if ($this->PDOSlaves[$key]) {
+			return $this->PDOSlaves[$key];
+		} else {
+			$connect               = $this->nowConnect();
+			$this->PDOSlaves[$key] = $connect;
+			return $this->PDOSlaves[$key];
 		}
 	}
 
@@ -42,6 +58,14 @@ class Connection extends Object {
 		//first connect the db
 		$command = new Command([
 				'db'  => $this->getConnect(),
+				'sql' => $sql,
+			]);
+		return $command;
+	}
+
+	public function createSlavesComm($num = 0, $sql = null) {
+		$command = new Command([
+				'db'  => $this->getSlavesConnect($num),
 				'sql' => $sql,
 			]);
 		return $command;
@@ -59,34 +83,59 @@ class Connection extends Object {
 		}
 	}
 
+	//Handle if there have Error
 	private function err($err) {
-		die('errInfo: '+$err);
+		throw new Exception('errInfo: '+$err);
 	}
 
-	//get infomation from config
+	//Get master database information from config
 	private function getInfo() {
-		$db = require (dirname(__FILE__).'/../../config/db.php');
-		if ($db['dsn'] && $db['user'] && $db['password']) {
-			$this->dsn     = $db['dsn'];
-			$this->user    = $db['user'];
-			$this->pass    = $db['password'];
-			$this->charset = $db['charset']?$db['charset']:'utf8';
+		$this->db = require (dirname(__FILE__).'/../../config/db.php');
+		if ($this->db['dsn'] && $this->db['user'] && $this->db['password']) {
+			$this->dsn        = $this->db['dsn'];
+			$this->user       = $this->db['user'];
+			$this->pass       = $this->db['password'];
+			$this->charset    = $this->db['charset']?$this->db['charset']:'utf8';
+			$this->rightNowDb = 'master';
 		} else {
 			$this->err('One of the PDO::DB Parameter is empty!');
 		}
 	}
 
+	//new a PDO object through this method
 	private function nowConnect() {
 		try {
-			$this->connect = new PDO($this->dsn, $this->user, $this->pass);
+			$connect = new PDO($this->dsn, $this->user, $this->pass);
 		} catch (PDOException $e) {
 			$this->err($e->getMessage());
 		}
-		if (!$this->connect) {
+		if (!$connect) {
 			$this->err('PDO connect error');
 		}
-		$this->connect->exec('SET NAMES '.$this->charset);
-		$this->connect->getAttribute(constant("PDO::ATTR_SERVER_VERSION"));
+		$connect->exec('SET NAMES '.$this->charset);
+		$connect->getAttribute(constant("PDO::ATTR_SERVER_VERSION"));
+		return $connect;
+	}
+
+	//Serval attributes change to slaver DataBase
+	public function setToSlaves($num) {
+		if ($this->db['slaves'][$num]['dsn'] && $this->db['slaves'][$num]['user'] && $this->db['slaves'][$num]['password']) {
+			$this->dsn        = $this->db['slaves'][$num]['dsn'];
+			$this->user       = $this->db['slaves'][$num]['user'];
+			$this->pass       = $this->db['slaves'][$num]['password'];
+			$this->rightNowDb = 'slaves'.$num;
+		} else {
+			$this->err('slaves '.$num.':: missing info!');
+		}
+	}
+
+	public function setMaster() {
+		$this->getInfo();
+		return $this;
+	}
+
+	public function getRightNowDb() {
+		return $this->rightNowDb;
 	}
 
 	public function __destruct() {

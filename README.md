@@ -16,7 +16,7 @@
 * public文件夹：     静态文件存放位置
 * view文件夹：       html页面、缓存文件和布局文件存放位置
 
-##角色控制（代码实现简单的角色控制）
+##Role control（代码实现简单的角色控制）
 
 ```php
 //rules is the function that cannot into this website page
@@ -61,48 +61,114 @@
 	return $this->router('index');
 这样会定位到这个文件名对应文件夹下的index.html文件，框架会读取文件显示在页面上
 
-## models文件
+## models file
 
-＊这个文件下所有的文件命名方式是更具数据库表内的名字命名
-
-注：一定要加上构造方法：（自动获取表名）
+*  this file must use database table name
+*  这个文件下所有的文件命名方式是更具数据库表内的名字命名
+*  and must add the __construct method
+*  注：一定要加上构造方法：（自动获取表名）
 
 ```php
 	public function __construct() {
 		$this->tableName = __CLASS__;
+    $this->primKey   = 'id';
 	}
 ```
-models下的方法：
-findOnlyOne方法、fingOneRecord、encrypt、jsonGet、Search、InsertInto、UpdateData、deleteOneRecord等。
+
+>under MModel method：
+
+```php
+
+$this->encrypt($password);
+$this->jsonGet($Array);
+$this->obj_arr($Array);
+//if there is model extend MModel, you can use more method that MModel have
+$this->findOnlyOne($target, $idVal);
+$this->findOneRecord($userIdVal);
+$this->findBySql($sql);
+$this->insertOne($arr);
+$this->updateOneRec($arrUpDate, $idVal);
+$this->updateTrans($sqlArr);
+$this->deleteOne($arr);
+```
+
 
 ###下面介绍最新编写的PDO连接如何使用
 
 ```php
+//single method
+
 $sql     = 'SELECT * FROM studentlist';
-$connect = new Connection();
-print_r($connect->createCommand($sql)->queryOne());
-
+$connect = Connection::getinstance();
+Merj::db()->createCommand($sql)->queryOne();
+$connect->createCommand($sql)->queryOne();
 //获取所有
-$connect->createCommand($sql)->queryAll();
-
+Merj::db()->createCommand($sql)->queryAll();
+$connect->createCommand($sql)->queryOne();
 //获取一条记录
+Merj::db()->createCommand($sql)->queryOne();
 $connect->createCommand($sql)->queryOne();
 
+Merj::db()->createCommand()->insert('tableName', [
+        'Val Key1' => 'Val1',
+        'Val Key2' => 'Val2',
+    ]);
 $connect->createCommand()->insert('tableName', [
-        'Column' => '1',
-        'name'   => 'merjiezo',
+        'Val Key1' => 'Val1',
+        'Val Key2' => 'Val2',
     ]);
 
-$connect->createCommand()->update('tableName', [
-        'Column' => '1',
+Merj::db()->createCommand()->update('tableName', [
+        'Set Key' => 'Set Val',
     ], [
-        'id' => '6',
+        'Where Key' => 'Where Val',
+    ]);
+$connect->createCommand()->update('tableName', [
+        'Set Key' => 'Set Val',
+    ], [
+        'Where Key' => 'Where Val',
     ]);
 
-$connect->createCommand()->delete('tableName', [
-        'Column' => '1',
-        'name'   => 'merjiezo',
+Merj::db()->createCommand()->delete('tableName', [
+        'Where Key1' => 'Where Val1',
+        'Where Key2' => 'Where Val2',
     ]);
+$connect->createCommand()->delete('tableName', [
+        'Where Key1' => 'Where Val1',
+        'Where Key2' => 'Where Val2',
+    ]);
+```
+
+>serval database connect
+>配置从服务器，在config内的db.php内
+
+```php
+<?php
+return [
+//main server
+  'dsn'      => 'mysql:host=127.0.0.1;dbname=test',
+  'user'     => 'root',
+  'password' => '950826',
+  'charset'  => 'utf8',
+
+//slaves server
+  'slaves' => [
+    [
+      'dsn'      => 'mysql:host=127.0.0.1;dbname=mjz',
+      'user'     => 'root',
+      'password' => '950826',
+      'charset'  => 'utf8',
+    ],
+  ],
+];
+```
+
+>Serval database Example
+
+```php
+//数量0对应从服务器的第一位，以此类推，先要进行配置
+Merj::db()->createSlavesComm(0, 'SELECT * FROM content')->queryAll();
+//as we see, the method behind 'createSlavesComm' is as same as createCommand, yeah that's the same use!!!!
 ```
 
 ## 当然，现在就完成了部分功能，还有更多功能等待开发

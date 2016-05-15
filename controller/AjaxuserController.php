@@ -5,8 +5,11 @@ class AjaxuserController extends MController {
 	public function RouterUserbirthday() {
 		$model   = new modelTest();
 		$results = $model->findOneRecord('1');
+		$res     = Merj::db()->createSlavesComm(0, 'SELECT * FROM content')->queryAll();
+		print_r($res);
 		if ($results) {
-			echo $results;
+			print_r($results);
+			// echo $results;
 		} else {
 			echo "No found";
 		}

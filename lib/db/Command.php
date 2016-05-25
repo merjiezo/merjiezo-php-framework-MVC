@@ -2,6 +2,7 @@
 /**
  * the DB command is all in here
  */
+
 class Command extends Object {
 
 	//this save sql word

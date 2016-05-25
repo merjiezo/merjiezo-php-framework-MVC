@@ -42,6 +42,10 @@ class Merj {
 	public static function sql() {
 		return new QueryBuilder();
 	}
+
+	public static function widget() {
+		return new Widgets();
+	}
 }
 
 spl_autoload_register(['Merj', 'autoLoad'], true, true);

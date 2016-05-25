@@ -2,6 +2,7 @@
 /**
  * PDO connection
  */
+
 class Connection extends Object {
 
 	//PDO to data connection STATIC$

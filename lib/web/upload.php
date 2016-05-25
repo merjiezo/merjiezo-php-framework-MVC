@@ -1,4 +1,5 @@
 <?php
+
 class Upload {
 	protected $fileName;
 	protected $maxSize;

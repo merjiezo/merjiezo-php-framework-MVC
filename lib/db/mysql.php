@@ -2,6 +2,7 @@
 /**
  * mysql Connection
  */
+
 class mysql extends Object {
 
 	protected $connection;

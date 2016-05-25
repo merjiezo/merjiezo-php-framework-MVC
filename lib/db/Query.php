@@ -2,6 +2,7 @@
 /**
  *
  */
+
 class Query extends Object {
 
 	//this is only used in search sql

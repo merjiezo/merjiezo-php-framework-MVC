@@ -1,17 +1,30 @@
 <?php
-
 class MController extends Object {
 
 	public $defineIndex = 'index';
 	private $staticHTML = 'view';
 	public $thisClass   = '';
 
-	//传入路径，打印出页面
-	public function router($path) {
+	//this is the html file
+	public function Html($path) {
 		if (!isset($path) || empty($path)) {
-			return $this->readFile($this->defineIndex);
+			return $this->readFile($this->defineIndex.'html');
 		} else {
-			return $this->readFile($path);
+			return $this->readFile($path.'.html');
+		}
+	}
+
+	//传入路径，打印出页面
+	public function router($path, array $model = array()) {
+		if (!isset($path) || empty($path)) {
+			return $this->readFile($this->defineIndex.'.php');
+		} else {
+			$view = new View();
+			if (strstr($path, '/')) {
+				return $view->render(APP_BASEURL."/$this->staticHTML/$path.php", $model);
+			} else {
+				return $view->render(APP_BASEURL."/$this->staticHTML/$this->thisClass/$path.php", $model);
+			}
 		}
 	}
 	//暂时拼接html，应该有控制，html、PHP皆可
@@ -23,7 +36,7 @@ class MController extends Object {
 		if ($path == 'error500') {
 			return @file_get_contents('view/layout/500.html');
 		}
-		$path = $this->staticHTML.'/'.$this->thisClass.'/'.$path.'.html';
+		$path = $this->staticHTML.'/'.$this->thisClass.'/'.$path;
 		if (file_exists($path)) {
 			//读取文件、打印
 			return @file_get_contents($path);

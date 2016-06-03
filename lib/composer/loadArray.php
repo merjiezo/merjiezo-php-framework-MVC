@@ -14,6 +14,7 @@ return [
 	'Session'      => APP_BASEURL.'/lib/web/Session.php',
 	'Login'        => APP_BASEURL.'/lib/web/Login.php',
 	'Upload'       => APP_BASEURL.'/lib/web/Upload.php',
+	'LogWrite'     => APP_BASEURL.'/lib/web/LogWrite.php',
 	'Html'         => APP_BASEURL.'/lib/widgets/Html.php',
 	'Widgets'      => APP_BASEURL.'/lib/widgets/Widgets.php',
 	'HtmlWidget'   => APP_BASEURL.'/lib/widgets/HtmlWidget.php',

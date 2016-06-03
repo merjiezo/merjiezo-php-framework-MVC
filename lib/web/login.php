@@ -53,7 +53,7 @@ class Login extends MModel {
 		if ($result) {
 			return $result;
 		}
-		$this->error = 'not Exist!';
+		$this->error = 'Not Exist!';
 		return false;
 	}
 
@@ -88,7 +88,12 @@ class Login extends MModel {
 
 	private function setlogSession($result) {
 		$session = new Session();
-		$session->initWebSiteSession(5, $result);
+		if ($session->initWebSiteSession(5, $result)) {
+			$json = json_encode($result);
+			$msg  = "session_ID".$session->getId()."IP Address :: {$_SERVER['HTTP_CLIENT_IP']} LOGINFO ::  $json";
+			echo $msg;
+			LogWrite::getinstance()->IntoWhere('session')->Info($msg)->execute();
+		}
 	}
 
 	//Not suppose to use, I suggest use checkExist
@@ -102,7 +107,7 @@ class Login extends MModel {
 	 **/
 	protected function getSql() {
 		$QueryBuilder = new QueryBuilder();
-		$sql          = $QueryBuilder->select([$this->userKeyName, $this->passwordKeyName])->from($table)->where([
+		$sql          = $QueryBuilder->select()->from($this->tableName)->where([
 				$this->userKeyName     => $this->user,
 				$this->passwordKeyName => $this->pass, ])->sqlVal();
 		return $sql;

@@ -1,4 +1,5 @@
 <?php
+date_default_timezone_set("PRC");
 define('APP_BASEURL', dirname(__FILE__));
 // Merjiezo is so cool
 require (__DIR__ .'/lib/autoload.php');

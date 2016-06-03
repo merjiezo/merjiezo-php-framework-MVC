@@ -86,7 +86,9 @@ class Connection extends Object {
 
 	//Handle if there have Error
 	private function err($err) {
-		throw new Exception('errInfo: '+$err);
+		$err = 'ErrInfo: '.$err;
+		LogWrite::getinstance()->IntoWhere('errordb')->Info($err)->execute();
+		throw new Exception($err);
 	}
 
 	//Get master database information from config

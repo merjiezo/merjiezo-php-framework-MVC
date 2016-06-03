@@ -13,14 +13,18 @@
 			<ul>
 				<li class="manager" style="text-align: center;">管理员</li>
 				<li class="admin_left"><a href="user"><span class="glyphicon glyphicon-user"></span>用户管理</a></li>
-				<li class="admin_left"><a href="goods"><span class="glyphicon glyphicon-list-alt"></span>货物管理</a></li>
+				<li class="admin_left"><a href="goods"><span class="glyphicon glyphicon-list-alt"></span>货架管理</a></li>
 				<li class="admin_left"><a href="instock"><span class="glyphicon glyphicon-log-in"></span>入库管理</a></li>
 				<li class="admin_left left_sel"><a href="outstock"><span class="glyphicon glyphicon-log-out"></span>出库管理</a></li>
 				<li class="admin_left"><a href="barcode"><span class="glyphicon glyphicon-barcode"></span>一维码管理</a></li>
+				<li class="admin_left"><a href="../user/logout"><span class="glyphicon glyphicon-eject"></span>退出</a></li>
 			</ul>
 		</header>
 		<section class="admin_contents">
 			<h3>出库管理</h3>
+			<div class="admin_toolbar">
+				<input class="admin_btn btn_ipt" type="text" id="search" placeholder="扫描时放置于此">
+			</div>
 			<table border="2" cellpadding="0" cellspacing="0" class="admin_tb">
 				<tr>
 					<th>#</th>
@@ -60,4 +64,16 @@
 
 		</footer>
 	</body>
+	<script>
+		var btn = {
+			search: document.getElementById('search'),
+		};
+		btn.search.addEventListener('input', function(e) {
+			if (e.target.value !== '') {
+				var search = e.target.value;
+
+				e.target.value = 0;
+			}
+		});
+	</script>
 </html>

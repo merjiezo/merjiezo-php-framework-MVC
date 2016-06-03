@@ -6,14 +6,15 @@
 		order allow,deny
 		deny from all
 	</Files>
+	<Files runtime>
+		order allow,deny
+		deny from 127.0.0.1
+	</Files>
 	RewriteEngine on
 
 	# if a directory or a file exists, use it directly
 	RewriteCond %{REQUEST_FILENAME} !-f
 	RewriteCond %{REQUEST_FILENAME} !-d
-
-	RewriteRule ^$ index.php?r=site/
-	RewriteRule ^(\w+)$ index.php?r=$1
-	RewriteRule ^(\w+)/(\w+)$  index.php?r=$1/$2
+	RewriteRule ^(.*)$ index.php?r=$1 [QSA,PT,L]
 
 </IfModule>

@@ -13,10 +13,11 @@
 			<ul>
 				<li class="manager" style="text-align: center;">管理员</li>
 				<li class="admin_left"><a href="user"><span class="glyphicon glyphicon-user"></span>用户管理</a></li>
-				<li class="admin_left"><a href="goods"><span class="glyphicon glyphicon-list-alt"></span>货物管理</a></li>
+				<li class="admin_left"><a href="goods"><span class="glyphicon glyphicon-list-alt"></span>货架管理</a></li>
 				<li class="admin_left"><a href="instock"><span class="glyphicon glyphicon-log-in"></span>入库管理</a></li>
 				<li class="admin_left"><a href="outstock"><span class="glyphicon glyphicon-log-out"></span>出库管理</a></li>
 				<li class="admin_left left_sel"><a href="barcode"><span class="glyphicon glyphicon-barcode"></span>一维码管理</a></li>
+				<li class="admin_left"><a href="../user/logout"><span class="glyphicon glyphicon-eject"></span>退出</a></li>
 			</ul>
 		</header>
 		<section class="admin_contents">
@@ -60,4 +61,5 @@
 
 		</footer>
 	</body>
+	<script src="../public/js/jquery.min.js"></script>
 </html>

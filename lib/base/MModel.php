@@ -62,8 +62,8 @@ class MModel {
 	 * @param  Insert infos
 	 * @return success or not
 	 **/
-	public function insertNum() {
-
+	public function insertNum(array $key = array(), array $arr = array()) {
+		return Merj::db()->createCommand()->insertSomeVal($this->tableName, $key, $arr);
 	}
 	/**
 	 * @param
@@ -111,7 +111,7 @@ class MModel {
 		if ($success) {
 			if ($arr) {
 				$json = json_encode($arr);
-				return '{"success":true,'.substr($json, 1, -1).'}';
+				return '{"success":true, "msg":"'.substr($json, 1, -1).'"}';
 			} else {
 				return '{"success":false}';
 			}
@@ -134,5 +134,11 @@ class MModel {
 			}
 		}
 		return $array;
+	}
+
+	public function dataColum() {
+		return [
+
+		];
 	}
 }

@@ -26,6 +26,17 @@ class QueryBuilder extends Query {
 		return $this;
 	}
 
+	public function servalValue(array $key, array $value = array()) {
+		$str = '(`'.implode("`, `", $key).'`) VALUE ';
+		$sql = "";
+		foreach ($value as $key => $val) {
+			$value[$key] = '(\''.implode('\', \'', $value[$key]).'\')';
+		}
+		$str .= implode(', ', $value);
+		$this->value = ' '.$str;
+		return $this;
+	}
+
 	public function update($table) {
 		$this->update = 'UPDATE '.$table;
 		return $this;

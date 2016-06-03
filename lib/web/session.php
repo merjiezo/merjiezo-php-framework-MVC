@@ -80,6 +80,9 @@ class Session {
 			''
 			:$this->set($key, $value);
 		}
+		$ip  = $_SERVER['REMOTE_ADDR'] == '::1'?'127.0.0.1':$_SERVER['REMOTE_ADDR'];
+		$msg = "IP Address: ".$ip." \r\n  SESSION ID::".session_id()." \r\n Msg : ".json_encode($arrSess);
+		LogWrite::getinstance()->IntoWhere('session')->Info($msg)->execute();
 	}
 
 	public function __destruct() {

@@ -44,13 +44,19 @@ class Command extends Object {
 		return $this->transction();
 	}
 
+	//insert serval database
+	public function insertSomeVal($table, array $key, array $arr) {
+		$this->sql = Merj::sql()->insert($table)->servalValue($key, $arr)->sqlVal();
+		return $this->transction();
+	}
+
 	//update the database
 	public function update($table, $arr, $where) {
 		$this->sql = Merj::sql()->update($table)->set($arr)->where($where)->sqlVal();
 		return $this->transction();
 	}
 
-	public function updateTrans($sqlArr) {
+	public function updateTrans(array $sqlArr = array()) {
 		return $this->transctions($sqlArr);
 	}
 
@@ -69,7 +75,9 @@ class Command extends Object {
 			$result = $this->execute($method);
 			return $result?$result:'';
 		} else {
-			throw new PDOException('Sql or PDO is empty; The sql is '.$this->sql);
+			$err = 'Sql or PDO is empty; The sql is '.$this->sql;
+			LogWrite::getinstance()->IntoWhere('errordb')->Info($this->sql)->execute();
+			throw new PDOException($err);
 			return false;
 		}
 	}
@@ -90,6 +98,8 @@ class Command extends Object {
 			$pdoStmt->execute();
 			$res = $pdoStmt->$method($this->dataType);
 			if (!$res) {
+				$msg = 'The result is empty, The sql word is :: '.$this->sql;
+				LogWrite::getinstance()->IntoWhere('errordb')->Info($msg)->execute();
 				return false;
 			}
 			return $res;
@@ -103,31 +113,34 @@ class Command extends Object {
 		try {
 			$this->pdo->beginTransaction();
 			$res = $this->pdo->exec($this->sql);
-			if ($res == 0) {
-				throw new PDOException('DB Error::Fail to change the database!!  The sql is: '.$this->sql);
+			if ($this->pdo->errorInfo()[0] != '00000') {
+				throw new PDOException('DB Error::Fail to change the database!!  The sql is: '.$this->sql.' The Error is :: '.$this->pdo->errorInfo()[2]);
 			}
 			$this->pdo->commit();
-			return $res;
+			return true;
 		} catch (PDOException $e) {
 			$this->pdo->rollback();
+			LogWrite::getinstance()->IntoWhere('errordb')->Info($e)->execute();
 			return false;
 		}
 	}
 
 	//change it lately
-	private function transctions($sqlArr) {
+	private function transctions(array $sqlArr = array()) {
 		try {
 			$this->pdo->beginTransaction();
 			foreach ($sqlArr as $value) {
 				$res = $this->pdo->exec($value);
-				if ($res == 0) {
-					throw new PDOException('DB Error::Fail to change the database!!  The sql is: '.$this->sql);
+				print_r($this->pdo->errorInfo());
+				if ($this->pdo->errorInfo()[0] != '00000') {
+					throw new PDOException('DB Error::Fail to change the database!!  The sql is: '.$value.' The Error is :: '.$this->pdo->errorInfo()[2]);
 				}
 			}
 			$this->pdo->commit();
-			return $res;
+			return true;
 		} catch (PDOException $e) {
 			$this->pdo->rollback();
+			LogWrite::getinstance()->IntoWhere('errordb')->Info($e)->execute();
 			return false;
 		}
 	}

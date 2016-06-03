@@ -27,6 +27,11 @@ class Merj {
 		self::auto($file);
 	}
 
+	public static function session($key) {
+		$session = new Session();
+		return $session->get($key, '');
+	}
+
 	public static function auto($file) {
 		if (!is_file($file)) {
 			die('This is not a file or this is not Exist'.$file);

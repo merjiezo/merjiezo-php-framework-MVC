@@ -60,7 +60,9 @@ class Router extends Object {
 					}
 				}
 			}
-			return $ClassController->notFound('404');
+			header("HTTP/2.0 403 Not Found");
+			echo "<script>alert('Error 403, No authority!')</script>";
+			exit;
 		} else {
 			$controller = new MController();
 			return $controller->notFound('404');
@@ -75,8 +77,9 @@ class Router extends Object {
 	}
 
 	private function inRouteArr($action, $control) {
+		$classMethod = 'Router'.ucwords($control);
 		foreach ($action as $value) {
-			if ($value == $control) {
+			if ($value == $classMethod) {
 				return false;
 			}
 		}

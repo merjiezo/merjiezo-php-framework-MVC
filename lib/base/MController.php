@@ -48,12 +48,15 @@ class MController extends Object {
 	public function notFound($error) {
 		switch ($error) {
 			case '404':
+				header("HTTP/2.0 404 Not Found");
 				return $this->readFile('error');
 				break;
 			case '500':
+				header("HTTP/2.0 500 Not Found");
 				return $this->readFile('error500');
 				break;
 			default:
+				header("HTTP/2.0 500 Not Found");
 				return $this->readFile('error500');
 				break;
 		}

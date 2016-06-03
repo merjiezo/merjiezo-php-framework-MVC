@@ -118,6 +118,7 @@ class Upload {
 	 *显示错误
 	 */
 	protected function showError() {
+		LogWrite::getinstance()->IntoWhere('app')->Info($this->error)->execute();
 		exit('<span style="color:red">'.$this->error.'</span>');
 	}
 	/**

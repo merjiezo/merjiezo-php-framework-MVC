@@ -1,0 +1,185 @@
+2016-05-28 10:31:59 |  ErrInfo: invalid data source name 
+2016-05-28 11:28:37 |  The result is empty, The sql word is :: SELECT name,userpass FROM  WHERE  name='merjiezo' AND userpass='7c4a8d09ca3762af61e59520943dc26494f8941b' 2016-05-28 11:33:32 ::  The result is empty, The sql word is :: SELECT name,userpass FROM  WHERE  name='merjiezo' AND userpass='7c4a8d09ca3762af61e59520943dc26494f8941b' 
+2016-05-28 11:34:23 ::  The result is empty, The sql word is :: SELECT name,userpass FROM  WHERE  name='merjiezo' AND userpass='7c4a8d09ca3762af61e59520943dc26494f8941b' 
+2016-05-28 11:38:39 ::  The result is empty, The sql word is :: SELECT name,userpass FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 11:50:37 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 13:00:34 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 14:10:45 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 14:10:46 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 14:17:41 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 14:21:57 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 14:22:26 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 14:22:56 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 14:23:34 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 14:24:05 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 14:24:30 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 14:25:25 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 14:25:53 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='q' AND userpass='22ea1c649c82946aa6e479e1ffd321e4a318b1b0' 
+2016-05-28 15:37:55 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:37:56 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:37:57 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:37:57 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:37:58 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:37:58 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:37:58 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:37:59 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:37:59 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:38:07 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:38:07 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:38:09 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:38:09 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:38:09 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 15:38:09 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 16:07:00 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 16:07:00 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 16:07:01 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 16:07:02 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 16:07:02 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-28 16:07:02 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-29 11:09:15 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-29 11:09:16 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-29 11:09:17 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-29 11:09:17 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-29 11:09:17 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-30 09:35:13 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-30 09:35:15 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-30 09:36:32 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-30 22:08:52 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-30 22:08:52 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-05-30 22:08:53 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 09:08:46 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 09:08:47 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 09:08:47 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 09:08:47 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 09:08:48 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 09:08:49 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 09:08:49 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 22:03:00 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 22:03:00 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 22:03:01 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 22:03:01 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 22:03:01 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-01 22:03:02 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-02 13:00:32 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-02 13:00:33 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-02 13:00:33 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-02 13:00:33 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-02 13:00:34 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-02 14:28:38 ::  exception 'PDOException' with message 'DB Error::Fail to change the database!!  The sql is: ' in /Applications/MAMP/htdocs/store/lib/db/Command.php:117
+Stack trace:
+#0 /Applications/MAMP/htdocs/store/lib/db/Command.php(50): Command->transction()
+#1 /Applications/MAMP/htdocs/store/lib/base/MModel.php(66): Command->insertSomeVal('Inquiry', Array, Array)
+#2 /Applications/MAMP/htdocs/store/models/Inquiry.php(33): MModel->insertNum(Array, Array)
+#3 /Applications/MAMP/htdocs/store/Controller/AjaxController.php(103): Inquiry->InsertGoods(Array)
+#4 /Applications/MAMP/htdocs/store/lib/base/Router.php(48): AjaxController->RouterInsertGoods()
+#5 /Applications/MAMP/htdocs/store/index.php(8): Router->getControllerFactory()
+#6 {main} 
+2016-06-02 14:29:24 ::  exception 'PDOException' with message 'DB Error::Fail to change the database!!  The sql is: ' in /Applications/MAMP/htdocs/store/lib/db/Command.php:118
+Stack trace:
+#0 /Applications/MAMP/htdocs/store/lib/db/Command.php(51): Command->transction()
+#1 /Applications/MAMP/htdocs/store/lib/base/MModel.php(66): Command->insertSomeVal('Inquiry', Array, Array)
+#2 /Applications/MAMP/htdocs/store/models/Inquiry.php(33): MModel->insertNum(Array, Array)
+#3 /Applications/MAMP/htdocs/store/Controller/AjaxController.php(103): Inquiry->InsertGoods(Array)
+#4 /Applications/MAMP/htdocs/store/lib/base/Router.php(48): AjaxController->RouterInsertGoods()
+#5 /Applications/MAMP/htdocs/store/index.php(8): Router->getControllerFactory()
+#6 {main} 
+2016-06-02 14:30:22 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='' 
+2016-06-02 14:32:42 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='1' 
+2016-06-02 14:33:53 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='1' 
+2016-06-03 09:39:42 ::  The result is empty, The sql word is :: SELECT * FROM Users WHERE  name='' AND userpass='da39a3ee5e6b4b0d3255bfef95601890afd80709' 
+2016-06-03 09:40:21 ::  exception 'PDOException' with message 'DB Error::Fail to change the database!!  The sql is: INSERT INTO Shelvies  (`letter`,`num`,`time`,`size`) VALUE ('A','5','2016-06-03','1')' in /Applications/MAMP/htdocs/store/lib/db/Command.php:117
+Stack trace:
+#0 /Applications/MAMP/htdocs/store/lib/db/Command.php(44): Command->transction()
+#1 /Applications/MAMP/htdocs/store/lib/base/MModel.php(59): Command->insert('Shelvies', Array)
+#2 /Applications/MAMP/htdocs/store/models/Shelvies.php(53): MModel->insertOne(Array)
+#3 /Applications/MAMP/htdocs/store/Controller/TestController.php(14): Shelvies->insertShelvies(Array)
+#4 /Applications/MAMP/htdocs/store/lib/base/Router.php(48): TestController->RouterAdminmaxtest()
+#5 /Applications/MAMP/htdocs/store/index.php(8): Router->getControllerFactory()
+#6 {main} 
+2016-06-03 09:40:22 ::  exception 'PDOException' with message 'DB Error::Fail to change the database!!  The sql is: INSERT INTO Shelvies  (`letter`,`num`,`time`,`size`) VALUE ('A','5','2016-06-03','1')' in /Applications/MAMP/htdocs/store/lib/db/Command.php:117
+Stack trace:
+#0 /Applications/MAMP/htdocs/store/lib/db/Command.php(44): Command->transction()
+#1 /Applications/MAMP/htdocs/store/lib/base/MModel.php(59): Command->insert('Shelvies', Array)
+#2 /Applications/MAMP/htdocs/store/models/Shelvies.php(53): MModel->insertOne(Array)
+#3 /Applications/MAMP/htdocs/store/Controller/TestController.php(14): Shelvies->insertShelvies(Array)
+#4 /Applications/MAMP/htdocs/store/lib/base/Router.php(48): TestController->RouterAdminmaxtest()
+#5 /Applications/MAMP/htdocs/store/index.php(8): Router->getControllerFactory()
+#6 {main} 
+2016-06-03 09:40:29 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='1' 
+2016-06-03 09:40:49 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='1' 
+2016-06-03 09:41:59 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='1' 
+2016-06-03 09:42:33 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='1' 
+2016-06-03 09:42:33 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='2' 
+2016-06-03 09:44:19 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='1' 
+2016-06-03 09:44:19 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='2' 
+2016-06-03 09:44:43 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='1' 
+2016-06-03 09:44:48 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='1' 
+2016-06-03 09:45:33 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='1' 
+2016-06-03 09:46:05 ::  The result is empty, The sql word is :: SELECT stock_id,bar_code FROM shelvies WHERE  status='1' 
+2016-06-03 09:49:33 ::  exception 'PDOException' with message 'DB Error::Fail to change the database!!  The sql is: ' in /Applications/MAMP/htdocs/store/lib/db/Command.php:135
+Stack trace:
+#0 /Applications/MAMP/htdocs/store/lib/db/Command.php(60): Command->transctions(Array)
+#1 /Applications/MAMP/htdocs/store/models/Shelvies.php(71): Command->updateTrans(Array)
+#2 /Applications/MAMP/htdocs/store/Controller/TestController.php(19): Shelvies->updateStocks(1)
+#3 /Applications/MAMP/htdocs/store/lib/base/Router.php(48): TestController->RouterTestUpdateTwoTableAtTheSameTime()
+#4 /Applications/MAMP/htdocs/store/index.php(8): Router->getControllerFactory()
+#5 {main} 
+2016-06-03 09:53:06 ::  exception 'PDOException' with message 'DB Error::Fail to change the database!!  The sql is: ' in /Applications/MAMP/htdocs/store/lib/db/Command.php:135
+Stack trace:
+#0 /Applications/MAMP/htdocs/store/lib/db/Command.php(60): Command->transctions(Array)
+#1 /Applications/MAMP/htdocs/store/models/Shelvies.php(71): Command->updateTrans(Array)
+#2 /Applications/MAMP/htdocs/store/Controller/TestController.php(19): Shelvies->updateStocks(2)
+#3 /Applications/MAMP/htdocs/store/lib/base/Router.php(48): TestController->RouterTestUpdateTwoTableAtTheSameTime()
+#4 /Applications/MAMP/htdocs/store/index.php(8): Router->getControllerFactory()
+#5 {main} 
+2016-06-03 10:01:09 ::  exception 'PDOException' with message 'DB Error::Fail to change the database!!  The sql is: ' in /Applications/MAMP/htdocs/store/lib/db/Command.php:135
+Stack trace:
+#0 /Applications/MAMP/htdocs/store/lib/db/Command.php(60): Command->transctions(Array)
+#1 /Applications/MAMP/htdocs/store/models/Shelvies.php(71): Command->updateTrans(Array)
+#2 /Applications/MAMP/htdocs/store/Controller/TestController.php(19): Shelvies->updateStocks(2)
+#3 /Applications/MAMP/htdocs/store/lib/base/Router.php(48): TestController->RouterTestUpdateTwoTableAtTheSameTime()
+#4 /Applications/MAMP/htdocs/store/index.php(8): Router->getControllerFactory()
+#5 {main} 
+2016-06-03 10:01:51 ::  exception 'PDOException' with message 'DB Error::Fail to change the database!!  The sql is: ' in /Applications/MAMP/htdocs/store/lib/db/Command.php:135
+Stack trace:
+#0 /Applications/MAMP/htdocs/store/models/Shelvies.php(71): Command->transctions(Array)
+#1 /Applications/MAMP/htdocs/store/Controller/TestController.php(19): Shelvies->updateStocks(2)
+#2 /Applications/MAMP/htdocs/store/lib/base/Router.php(48): TestController->RouterTestUpdateTwoTableAtTheSameTime()
+#3 /Applications/MAMP/htdocs/store/index.php(8): Router->getControllerFactory()
+#4 {main} 
+2016-06-03 10:03:17 ::  exception 'PDOException' with message 'DB Error::Fail to change the database!!  The sql is: ' in /Applications/MAMP/htdocs/store/lib/db/Command.php:136
+Stack trace:
+#0 /Applications/MAMP/htdocs/store/models/Shelvies.php(71): Command->transctions(Array)
+#1 /Applications/MAMP/htdocs/store/Controller/TestController.php(19): Shelvies->updateStocks(2)
+#2 /Applications/MAMP/htdocs/store/lib/base/Router.php(48): TestController->RouterTestUpdateTwoTableAtTheSameTime()
+#3 /Applications/MAMP/htdocs/store/index.php(8): Router->getControllerFactory()
+#4 {main} 
+2016-06-03 10:07:23 ::  exception 'PDOException' with message 'DB Error::Fail to change the database!!  The sql is: UPDATE inquiry SET bar_code = '10000005B2' AND status = '2' WHERE stock_id = '10000005' The Error is :: Truncated incorrect DOUBLE value: '10000005B2'' in /Applications/MAMP/htdocs/store/lib/db/Command.php:136
+Stack trace:
+#0 /Applications/MAMP/htdocs/store/models/Shelvies.php(71): Command->transctions(Array)
+#1 /Applications/MAMP/htdocs/store/Controller/TestController.php(19): Shelvies->updateStocks(2)
+#2 /Applications/MAMP/htdocs/store/lib/base/Router.php(48): TestController->RouterTestUpdateTwoTableAtTheSameTime()
+#3 /Applications/MAMP/htdocs/store/index.php(8): Router->getControllerFactory()
+#4 {main} 
+2016-06-03 10:11:13 ::  exception 'PDOException' with message 'DB Error::Fail to change the database!!  The sql is: UPDATE inquiry SET bar_code = '10000005B2' AND status = '2' WHERE stock_id = '10000005' The Error is :: Truncated incorrect DOUBLE value: '10000005B2'' in /Applications/MAMP/htdocs/store/lib/db/Command.php:136
+Stack trace:
+#0 /Applications/MAMP/htdocs/store/models/Shelvies.php(71): Command->transctions(Array)
+#1 /Applications/MAMP/htdocs/store/Controller/TestController.php(19): Shelvies->updateStocks(2)
+#2 /Applications/MAMP/htdocs/store/lib/base/Router.php(48): TestController->RouterTestUpdateTwoTableAtTheSameTime()
+#3 /Applications/MAMP/htdocs/store/index.php(8): Router->getControllerFactory()
+#4 {main} 
+2016-06-03 11:45:00 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='10000001' 
+2016-06-03 11:47:06 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='10000001' 
+2016-06-03 11:47:08 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='10000001' 
+2016-06-03 11:47:10 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='10000003' 
+2016-06-03 11:47:22 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='10000001' 
+2016-06-03 11:47:22 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='10000001' 
+2016-06-03 11:50:28 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='www.baidu.com' 
+2016-06-03 11:50:40 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='www.baidu.com' 
+2016-06-03 11:50:43 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='www.baidu.com' 
+2016-06-03 11:50:55 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='www.baidu.com' 
+2016-06-03 11:50:57 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='http' 
+2016-06-03 11:51:30 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='10000003' 
+2016-06-03 11:51:31 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='10000001' 
+2016-06-03 11:51:32 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='10000001' 
+2016-06-03 12:08:17 ::  The result is empty, The sql word is :: SELECT * FROM Inquiry WHERE  stock_id='public' 

@@ -83,7 +83,7 @@ class AjaxController extends MController {
 		$res      = $shelvies->updateStocks($size);
 		if ($res) {
 			$res = json_encode($res[0]);
-			echo '{"success":true, "msg":"'.$res.'"}';
+			echo '{"success":true, "msg":'.$res.'}';
 		}
 	}
 
@@ -93,8 +93,6 @@ class AjaxController extends MController {
 	public function RouterInsertGoods() {
 		$num       = (int) $_POST['num'];
 		$size      = (int) $_POST['size'];
-		$num       = 2;
-		$size      = 2;
 		$inquiry   = new Inquiry();
 		$insertArr = array();
 		for ($i = 0; $i < $num; $i++) {
@@ -104,6 +102,30 @@ class AjaxController extends MController {
 			return $this->UpShelveStock($size);
 		} else {
 			echo '{"success": false, "msg": "不能录入货物，生成编号"}';
+		}
+	}
+
+	public function RouterOutquiryInfo() {
+		$cargo    = $_POST['cargo'];
+		$stock_id = substr($cargo, 0, 8);
+		$num      = substr($cargo, 8);
+		$inquiry  = new Inquiry();
+		$res      = $inquiry->GetOneInfo($stock_id);
+		if ($res) {
+			echo '{"success":true, "msg":'.$res.', "barcode": "'.$cargo.'","shelvies":"'.$num.'"}';
+		} else {
+			echo '{"success":false, "msg":"找不到记录"}';
+		}
+	}
+
+	public function RouterGetInquiryShow() {
+		$status  = 2;
+		$inquiry = new Inquiry();
+		$res     = $inquiry->SelectAllRecStatus($status);
+		if ($res) {
+			echo '{"success": true, "msg": '.$res.'}';
+		} else {
+			echo '{"success": false, "msg": "无货物需要录入信息"}';
 		}
 	}
 }

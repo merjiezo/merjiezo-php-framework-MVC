@@ -25,54 +25,56 @@
 			<div class="admin_toolbar">
 				<input class="admin_btn btn_ipt" type="text" id="search" placeholder="扫描时放置于此">
 			</div>
-			<table border="2" cellpadding="0" cellspacing="0" class="admin_tb">
-				<tr>
-					<th>#</th>
-					<th>用户ID</th>
-					<th>用户姓名</th>
-					<th>注册时间</th>
-					<th>用户状态</th>
-					<th>用户状态</th>
-				</tr>
-				<tr>
-					<td>1</td>
-					<td>January</td>
-					<td>$100</td>
-					<td>January</td>
-					<td>$100</td>
-					<td>$100</td>
-				</tr>
-				<tr>
-					<td>2</td>
-					<td>January</td>
-					<td>$100</td>
-					<td>January</td>
-					<td>$100</td>
-					<td>$100</td>
-				</tr>
-				<tr>
-					<td>3</td>
-					<td>January</td>
-					<td>$100</td>
-					<td>January</td>
-					<td>$100</td>
-					<td>$100</td>
-				</tr>
-			</table>
+			<div>
+				<div class="admin_showCargo_detail"><br>
+					<p><label>货物ID:</label></p>
+					<p><label>货物描述:</label></p>
+					<p><label>货物过期时间:</label></p>
+					<p><label>货物重量:</label></p>
+					<p><label>货架:</label></p>
+					<p><label>二维码:</label></p>
+				</div>
+				<button class="admin_btn btn_red" id="outquiry">出库</button>
+			</div>
 		</section>
 		<footer class="admin_foot">
 
 		</footer>
 	</body>
+	<script src="../public/js/jquery.min.js"></script>
+	<script src="../public/js/admin.js"></script>
 	<script>
 		var btn = {
 			search: document.getElementById('search'),
+			outquiry: document.getElementById('outquiry'),
 		};
+		btn.outquiry.addEventListener('click', function(e) {
+			alert($('.admin_showCargo_detail').data('stock'));
+		});
 		btn.search.addEventListener('input', function(e) {
 			if (e.target.value !== '') {
-				var search = e.target.value;
-
-				e.target.value = 0;
+				var search = e.target.value,
+					data = {
+						cargo: search,
+					};
+				$('.admin_showCargo_detail').empty();
+				ajaxVal.ajax(ajaxVal.showOneQuiry, function(data) {
+					if (data.success) {
+						var str = '<p><label>货物ID:</label>'+data.msg[0].stock_id+'</p>'+
+								'<p><label>货物描述:</label>'+data.msg[0].describe+'</p>'+
+								'<p><label>货物过期时间:</label>'+data.msg[0].time+'</p>'+
+								'<p><label>货物重量:</label>'+data.msg[0].weight+'  kg</p>'+
+								'<p><label>货架:</label>'+data.shelvies+'</p>'+
+								'<p><label>二维码:</label><img src="codedraw?text='+data.barcode+'"></p>';
+						$('.admin_showCargo_detail').data('stock', data.barcode);
+						$('.admin_showCargo_detail').append(str);
+					} else {
+						alert(data.msg);
+					}
+				}, data);
+				setTimeout(function() {
+					e.target.value = '';
+				}, 0);
 			}
 		});
 	</script>

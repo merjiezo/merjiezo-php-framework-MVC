@@ -60,6 +60,12 @@ class AdminController extends MController {
 		}
 	}
 
+	public function RouterGetDownLoad() {
+		header('Content-Type: application/png');
+		header('Content-Disposition: attachment; filename="123.png"');
+		readfile(APP_BASEURL.'/index.php?r=admin/codedraw&text=123456');
+	}
+
 	//store/index.php?r=admin/codedraw&text=123456
 	public function RouterCodedraw() {
 		$codebar = 'BCGcode128';

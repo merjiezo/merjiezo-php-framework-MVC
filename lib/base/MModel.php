@@ -136,6 +136,17 @@ class MModel {
 		return $array;
 	}
 
+	public function jsonUtf8Out($arr) {
+		foreach ($arr as $key => $value) {
+			if (is_array($value)) {
+				$arr[$key] = $this->jsonUtf8Out($value);
+			} else {
+				$arr[$key] = urlencode($value);
+			}
+		}
+		return $arr;
+	}
+
 	public function dataColum() {
 		return [
 

@@ -61,6 +61,23 @@ class Inquiry extends MModel {
 		return [$results, $num];
 	}
 
+	public function SelectAllRecStatus($status) {
+		$sql = Merj::sql()->select()->from('inquiry')->where([
+				'status' => $status,
+			])->sqlVal();
+		$results = $this->findBySql($sql);
+		if ($results) {
+			foreach ($results as $key => $value) {
+				$results[$key]['size']   = $this->size[$value['size']];
+				$results[$key]['status'] = $this->status[$value['status']];
+			}
+			$results = $this->jsonUtf8Out($results);
+			$results = json_encode($results);
+			return urldecode($results);
+		}
+		return false;
+	}
+
 	public function InsertGoods($arr) {
 		return $this->insertNum(['size', 'status'], $arr);
 	}
@@ -83,8 +100,14 @@ class Inquiry extends MModel {
 		return false;
 	}
 
-	public function getBarCode($id) {
-
+	public function GetOneInfo($stock_id) {
+		$sql = 'SELECT inquiry.stock_id, inquiry.time, inquiry.weight, inquiry.describe, shelvies.letter, shelvies.num, shelvies.status  FROM inquiry JOIN shelvies WHERE inquiry.stock_id = \''.$stock_id.'\' AND inquiry.stock_id = shelvies.stock_id';
+		$res = $this->findBySql($sql);
+		if ($res) {
+			$res = $this->jsonUtf8Out($res);
+			$res = json_encode($res);
+			return urldecode($res);
+		}
 	}
 
 }

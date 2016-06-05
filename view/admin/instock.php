@@ -23,10 +23,11 @@
 		<section class="admin_contents">
 			<h3>入库管理</h3>
 			<section class="admin_form">
-				<label for="">货物个数:</label><input type="text" class="admin_btn btn_ipt" name="num" placeholder="货物个数"><br>
-				<label for="">货物大小:</label><input type="text" class="admin_btn btn_ipt" name="size" placeholder="尺寸(1:大型 | 2:正常)">
-				<button class="admin_btn btn_red" id="">生成二维码</button>
-				<button class="admin_btn btn_green" id="">录入信息</button>
+				<label for="">货物个数:</label><input id="cargo_num" type="text" class="admin_btn btn_ipt" name="num" placeholder="货物个数"><br>
+				<label for="">货物大小:</label><input id="cargo_size" type="text" class="admin_btn btn_ipt" name="size" placeholder="尺寸(1:大型 | 2:正常)">
+				<button class="admin_btn btn_red" id="barCode">生成二维码</button>
+				<button class="admin_btn btn_green" id="InfoWrite">录入信息</button>
+				<button class="admin_btn btn_green" id="showStock">生成报表</button>
 			</section><br>
 <?php echo "<table border=\"2\" cellpadding=\"0\" cellspacing=\"0\" class=\"admin_tb\" data-totle=\"".$model['pagination']."\">";?>
 <tr>
@@ -40,19 +41,26 @@
 				</tr>
 <?php foreach ($model as $key => $value) {
 	if ($key !== 'pagination') {
-		echo '<tr><td>'.$value['stock_id'].'</td><td>'.$value['status'].'</td><td>'.$value['size'].'</td><td>'.$value['describe'].'</td><td>'.$value['weight'].'</td><td>'.$value['time'].'</td>';
-		echo '<td><a href="showgoods/'.$value['stock_id'].'" target="_blank"><span class="glyphicon glyphicon-pencil admin_func" data-func="authority"></span></a></td></tr>';
+		echo '<tr class="tb_canchange"><td>'.$value['stock_id'].'</td><td>'.$value['status'].'</td><td>'.$value['size'].'</td><td>'.$value['describe'].'</td><td>'.$value['weight'].'</td><td>'.$value['time'].'</td>';
+		echo '<td><a href="showgoods/'.$value['stock_id'].'" target="_blank"><span class="glyphicon glyphicon-pencil admin_func"></span></a></td></tr>';
 	}
 
 }?>
 			</table>
+			<div id="page"></div>
+		</section>
+		<section class="waiting">
+			<div class="elastic">
+				<div class="elasticball" id="elasticOne"></div>
+				<div class="elasticball" id="elasticTwo"></div>
+			</div>
+		</section>
 		<footer class="admin_foot">
 		</footer>
 	</body>
 	<script src="../public/js/jquery.min.js"></script>
+	<script src="../public/js/admin.js"></script>
 	<script>
-		function test() {
-			$('.admin_contents').append('<img src="../index.php?r=admin/codedraw&text=A0112345678">');
-		}
+		ajaxVal.pagination('#page', 'URL', 1, $('.admin_contents>table').data('totle'));
 	</script>
 </html>

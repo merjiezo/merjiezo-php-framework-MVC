@@ -15,7 +15,7 @@ class AdminController extends MController {
 					'matchAuthority' => $this->getSession('status', 2),
 				],
 				[
-					'actions'        => ['RouterUser', 'RouterGoods', 'RouterInstock', 'RouterOutstock', 'RouterBarcode'],
+					'actions'        => ['RouterUser', 'RouterGoods', 'RouterInstock', 'RouterOutstock', 'RouterBarcode', 'RouterShowgoods'],
 					'matchAuthority' => $this->getSession('status', 0),
 				],
 			],
@@ -45,7 +45,9 @@ class AdminController extends MController {
 	}
 
 	public function RouterBarcode() {
-		return $this->router('barcode');
+		$inquiry = new Inquiry();
+		$model   = $inquiry->SelectGoodsWithStatus('3');
+		return $this->router('barcode', $model[0]);
 	}
 
 	public function RouterShowgoods() {

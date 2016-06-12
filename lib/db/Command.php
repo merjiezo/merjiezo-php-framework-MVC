@@ -131,7 +131,6 @@ class Command extends Object {
 			$this->pdo->beginTransaction();
 			foreach ($sqlArr as $value) {
 				$res = $this->pdo->exec($value);
-				print_r($this->pdo->errorInfo());
 				if ($this->pdo->errorInfo()[0] != '00000') {
 					throw new PDOException('DB Error::Fail to change the database!!  The sql is: '.$value.' The Error is :: '.$this->pdo->errorInfo()[2]);
 				}

@@ -30,7 +30,7 @@ class QueryBuilder extends Query {
 		$str = '(`'.implode("`, `", $key).'`) VALUE ';
 		$sql = "";
 		foreach ($value as $key => $val) {
-			$value[$key] = '(\''.implode('\', \'', $value[$key]).'\')';
+			$value[$key] = '(\''.implode('\', \'', addslashes($value[$key])).'\')';
 		}
 		$str .= implode(', ', $value);
 		$this->value = ' '.$str;

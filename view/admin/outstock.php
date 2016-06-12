@@ -17,6 +17,8 @@
 				<li class="admin_left"><a href="instock"><span class="glyphicon glyphicon-log-in"></span>入库管理</a></li>
 				<li class="admin_left left_sel"><a href="outstock"><span class="glyphicon glyphicon-log-out"></span>出库管理</a></li>
 				<li class="admin_left"><a href="barcode"><span class="glyphicon glyphicon-barcode"></span>一维码管理</a></li>
+				<li class="admin_left"><a href="../user/Project"><span class="glyphicon glyphicon-shopping-cart"></span>待上架货物</a></li>
+				<li class="admin_left"><a href="../user/outproject"><span class="glyphicon glyphicon-road"></span>待出库货物</a></li>
 				<li class="admin_left"><a href="../user/logout"><span class="glyphicon glyphicon-eject"></span>退出</a></li>
 			</ul>
 		</header>
@@ -32,7 +34,7 @@
 					<p><label>货物过期时间:</label></p>
 					<p><label>货物重量:</label></p>
 					<p><label>货架:</label></p>
-					<p><label>二维码:</label></p>
+					<p><label>一维码:</label></p>
 				</div>
 				<button class="admin_btn btn_red" id="outquiry">出库</button>
 			</div>
@@ -49,7 +51,19 @@
 			outquiry: document.getElementById('outquiry'),
 		};
 		btn.outquiry.addEventListener('click', function(e) {
-			alert($('.admin_showCargo_detail').data('stock'));
+			var info = {
+				url: '../ajax/updatequirytostatusfive',
+				method: 'POST',
+			};
+			ajaxVal.ajax(info, function(json) {
+				if (json.success) {
+					alert('货物等待出库');
+				} else {
+					alert('系统错误');
+				}
+			},{
+				stock: $('.admin_showCargo_detail').data('stock')
+			});
 		});
 		btn.search.addEventListener('input', function(e) {
 			if (e.target.value !== '') {
@@ -65,7 +79,7 @@
 								'<p><label>货物过期时间:</label>'+data.msg[0].time+'</p>'+
 								'<p><label>货物重量:</label>'+data.msg[0].weight+'  kg</p>'+
 								'<p><label>货架:</label>'+data.shelvies+'</p>'+
-								'<p><label>二维码:</label><img src="codedraw?text='+data.barcode+'"></p>';
+								'<p><label>一维码:</label><img src="codedraw?text='+data.barcode+'"></p>';
 						$('.admin_showCargo_detail').data('stock', data.barcode);
 						$('.admin_showCargo_detail').append(str);
 					} else {

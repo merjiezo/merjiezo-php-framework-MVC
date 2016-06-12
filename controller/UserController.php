@@ -1,6 +1,11 @@
 <?php
 class UserController extends MController {
 
+	public $status = [
+		'1' => '../user/project',
+		'2' => '../admin/user',
+	];
+
 	//rules is the function that cannot into this website page
 	//Guest is can show method
 	public function behaviors() {
@@ -15,7 +20,7 @@ class UserController extends MController {
 					'matchAuthority' => $this->getSession('status', 2),
 				],
 				[
-					'actions'        => [],
+					'actions'        => ['RouterProject'],
 					'matchAuthority' => $this->getSession('status', 0),
 				],
 			],
@@ -37,7 +42,7 @@ class UserController extends MController {
 		$users = new Users();
 		$res   = $users->handlelogin($user, $pass);
 		if ($res == 'success') {
-			header('Location: ../admin/user');
+			header('Location: '.$this->status[Merj::session('status')]);
 		} else {
 			echo "<script>alert('".$res."');window.history.go(-1);</script>";
 		}
@@ -48,6 +53,28 @@ class UserController extends MController {
 		$session->open();
 		$session->destory();
 		header('Location: login');
+	}
+
+	public function RouterProject() {
+		return $this->router('Instock');
+	}
+
+	public function RouterOutProject() {
+		return $this->router('outproject');
+	}
+
+	public function RouterFile() {
+		return $this->router('fileup');
+	}
+
+	public function RouterFilehandle() {
+		var_dump($_FILE);
+		$uploadfile = new Upload('photo');
+		if ($uploadfile->uploadFile()) {
+			echo '{"success":true}';
+		} else {
+			echo '{"success": false}';
+		}
 	}
 
 }

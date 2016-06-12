@@ -21,6 +21,8 @@ class Connection extends Object {
 
 	private $PDOSlaves;
 
+	private $rightNowDb;
+
 	private static $_instance;
 
 	private function __construct() {}

@@ -2,7 +2,7 @@
 class Users extends Login {
 
 	private $manager = [
-		1=> '叉车工',
+		1=> '普通工人',
 		2=> '仓储管理员',
 	];
 

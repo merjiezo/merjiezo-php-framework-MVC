@@ -53,12 +53,25 @@ class Inquiry extends MModel {
 	}
 
 	public function SelectGoodsWithStatus($status) {
-		$sql = Merj::sql()->select(['stock_id'])->from('inquiry')->where([
+		$sql = Merj::sql()->select(['stock_id', 'bar_code'])->from('inquiry')->where([
 				'status' => $status,
 			])->sqlVal();
 		$results = $this->findBySql($sql);
 		$num     = count($results);
 		return [$results, $num];
+	}
+
+	public function selectStatus($status) {
+		$res = $this->SelectGoodsWithStatus($status);
+		$res = $res[0];
+		if ($res) {
+			foreach ($res as $key => $value) {
+				$res[$key]['shelvies'] = substr($value['bar_code'], 8);
+			}
+			$res = json_encode($res);
+			return $res;
+		}
+		return false;
 	}
 
 	public function SelectAllRecStatus($status) {
@@ -108,6 +121,16 @@ class Inquiry extends MModel {
 			$res = json_encode($res);
 			return urldecode($res);
 		}
+	}
+
+	public function UpdateQuiryAndShelvies($stock) {
+		$sql   = array();
+		$sql[] = 'UPDATE inquiry SET status = \'6\' WHERE stock_id = \''.$stock.'\'';
+		$sql[] = 'UPDATE shelvies SET stock_id = \'\', status = \'1\' WHERE stock_id = \''.$stock.'\'';
+		if ($this->updateTrans($sql)) {
+			return true;
+		}
+		return false;
 	}
 
 }

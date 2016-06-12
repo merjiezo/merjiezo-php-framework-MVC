@@ -1,4 +1,5 @@
 <?php
+header('Content-Type: application/json;charset=utf-8');
 class AjaxController extends MController {
 
 	/*
@@ -83,7 +84,9 @@ class AjaxController extends MController {
 		$res      = $shelvies->updateStocks($size);
 		if ($res) {
 			$res = json_encode($res[0]);
-			echo '{"success":true, "msg":'.$res.'}';
+			return '{"success":true, "msg":'.$res.'}';
+		} else {
+			return '{"success": false}';
 		}
 	}
 
@@ -99,7 +102,7 @@ class AjaxController extends MController {
 			$insertArr[] = [$size, 1];
 		}
 		if ($inquiry->InsertGoods($insertArr)) {
-			return $this->UpShelveStock($size);
+			echo $this->UpShelveStock($size);
 		} else {
 			echo '{"success": false, "msg": "不能录入货物，生成编号"}';
 		}
@@ -128,4 +131,76 @@ class AjaxController extends MController {
 			echo '{"success": false, "msg": "无货物需要录入信息"}';
 		}
 	}
+
+	public function RouterInquiryShowWithStatusThree() {
+		$inquiry = new Inquiry();
+		$res     = $inquiry->selectStatus('3');
+		if ($res) {
+			echo '{"success":true, "msg": '.$res.'}';
+		} else {
+			echo '{"success": false, "msg":"没有货物上架"}';
+		}
+	}
+
+	public function RouterInquiryShowWithStatusFive() {
+		$inquiry = new Inquiry();
+		$res     = $inquiry->selectStatus('5');
+		if ($res) {
+			echo '{"success":true, "msg": '.$res.'}';
+		} else {
+			echo '{"success": false, "msg":"没有货物出库"}';
+		}
+	}
+
+	public function RouterGoodsInfoInsert() {
+		$arr = array();
+		if ($_POST['stock'] && $_POST['size'] && $_POST['describe'] && $_POST['weight'] && $_POST['time']) {
+			$stock                   = $_POST['stock'];
+			$arr['inquiry.size']     = $_POST['size'];
+			$arr['inquiry.describe'] = $_POST['describe'];
+			$arr['inquiry.weight']   = $_POST['weight'];
+			$arr['inquiry.time']     = $_POST['time'];
+			$arr['inquiry.status']   = '3';
+			$inquiry                 = new Inquiry();
+			if ($inquiry->updateOneRec($arr, $stock)) {
+				echo '{"success": true, "msg": ""}';
+				return;
+			}
+		}
+		echo '{"success": false, "msg": "录入失败，货物ID: '.$stock.'"}';
+	}
+
+	public function RouterStatusChangeThroughStock() {
+		$stock         = $_POST['stock'];
+		$arr['status'] = $_POST['status'];
+		$inquiry       = new Inquiry();
+		if ($inquiry->updateOneRec($arr, $stock)) {
+			echo '{"success": true}';
+		} else {
+			echo '{"success": false, "msg": "上架失败"}';
+		}
+	}
+
+	public function RouterUpdateQuiryToStatusFive() {
+		$stock   = substr(addslashes($_POST['stock']), 0, 8);
+		$status  = 5;
+		$inquiry = new Inquiry();
+		if ($inquiry->UpStockStatus($status, $stock)) {
+			echo '{"success": true, "msg": "成功！"}';
+			return;
+		}
+		echo '{"success": false, "msg": "更新失败，失败货物ID："'.$stock.'}';
+	}
+
+	public function RouterUpdateQuiryAndShelvies() {
+		$stock   = addslashes($_POST['stock']);
+		$stock   = addslashes('10000000');
+		$inquiry = new Inquiry();
+		if ($inquiry->UpdateQuiryAndShelvies($stock)) {
+			echo '{"success": true, "msg": "ID为:'.$stock.'"}';
+			return;
+		}
+		echo '{"success": false, "msg": "ID为:'.$stock.'"}';
+	}
+
 }

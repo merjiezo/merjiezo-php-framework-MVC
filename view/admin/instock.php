@@ -17,6 +17,8 @@
 				<li class="admin_left left_sel"><a href="instock"><span class="glyphicon glyphicon-log-in"></span>入库管理</a></li>
 				<li class="admin_left"><a href="outstock"><span class="glyphicon glyphicon-log-out"></span>出库管理</a></li>
 				<li class="admin_left"><a href="barcode"><span class="glyphicon glyphicon-barcode"></span>一维码管理</a></li>
+				<li class="admin_left"><a href="../user/Project"><span class="glyphicon glyphicon-shopping-cart"></span>待上架货物</a></li>
+				<li class="admin_left"><a href="../user/outproject"><span class="glyphicon glyphicon-road"></span>待出库货物</a></li>
 				<li class="admin_left"><a href="../user/logout"><span class="glyphicon glyphicon-eject"></span>退出</a></li>
 			</ul>
 		</header>
@@ -25,7 +27,7 @@
 			<section class="admin_form">
 				<label for="">货物个数:</label><input id="cargo_num" type="text" class="admin_btn btn_ipt" name="num" placeholder="货物个数"><br>
 				<label for="">货物大小:</label><input id="cargo_size" type="text" class="admin_btn btn_ipt" name="size" placeholder="尺寸(1:大型 | 2:正常)">
-				<button class="admin_btn btn_red" id="barCode">生成二维码</button>
+				<button class="admin_btn btn_red" id="barCode">生成一维码</button>
 				<button class="admin_btn btn_green" id="InfoWrite">录入信息</button>
 				<button class="admin_btn btn_green" id="showStock">生成报表</button>
 			</section><br>

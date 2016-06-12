@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0,user-scalable=no">
 		<link rel="stylesheet" href="../public/css/main.css">
 		<link rel="stylesheet" href="../public/css/user.css">
-		<title>铲车工</title>
+		<title>出库</title>
 	</head>
 	<body>
 		<a href="logout">退出</a><br><a href="../admin/goods">管理员界面</a>
@@ -25,20 +25,20 @@
 		}, 10000);
 
 		function getStockJson() {
-			$.getJSON('../ajax/InquiryShowWithStatusThree', function(json, textStatus) {
+			$.getJSON('../ajax/InquiryShowWithStatusFive', function(json, textStatus) {
 				if (textStatus == 'success') {
 					var str = '';
 					$('.user_contents').empty();
 					if (json.success) {
 						for (prop in json.msg) {
 							if (json.msg.hasOwnProperty(prop)) {
-								str += '<div class="user_block"><div class="user_pic"><p>货架: '+json.msg[prop].shelvies+'<br>货物ID: '+json.msg[prop].stock_id+'</p></div><button onclick="Inquiry(event)" data-stock="'+json.msg[prop].stock_id+'">上架</button></div>';
+								str += '<div class="user_block"><div class="user_pic"><p>货架: '+json.msg[prop].shelvies+'<br>货物ID: '+json.msg[prop].stock_id+'</p></div><button onclick="Inquiry(event)" data-stock="'+json.msg[prop].stock_id+'">出库</button></div>';
 							}
 						}
-						$('.user_contents').append(str);
 					} else {
 						str += '<p style="text-align: center;">'+json.msg+'</p>';
 					}
+					$('.user_contents').append(str);
 				} else {
 					alert('获取失败 '+textStatus);
 				}
@@ -48,9 +48,9 @@
 		function Inquiry(event) {
 			var data = {
 				stock: event.target.dataset.stock,
-				status: '4',
+				status: '6',
 			};
-			ajaxVal.ajax(ajaxVal.updateTheQuiry, function(data) {
+			ajaxVal.ajax(ajaxVal.UpdateQuiryAndShelvies, function(data) {
 				if (data.success) {
 					event.target.parentElement.style.transform = 'scale(0)';
 					setTimeout(function() {

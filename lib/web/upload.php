@@ -19,12 +19,12 @@ class Upload {
 	 * @param array $dontallowExt
 	 * @param array $dontallowMime
 	 */
-	public function __construct($fileName = 'myFile', $uploadPath = './uploads', $imgFlag = true, $maxSize = 33554432, $dontallowExt = array('php', 'html', 'js', 'sh'), $dontallowMime = array('text/html', 'text/php', 'application/x-javascript', 'application/x-sh')) {
+	public function __construct($fileName, $uploadPath = '/uploads', $imgFlag = true, $maxSize = 33554432, $dontallowExt = array('php', 'html', 'js', 'sh'), $dontallowMime = array('text/html', 'text/php', 'application/x-javascript', 'application/x-sh')) {
 		$this->fileName      = $fileName;
 		$this->maxSize       = $maxSize;
 		$this->dontallowMime = $dontallowMime;
 		$this->dontallowExt  = $dontallowExt;
-		$this->uploadPath    = $uploadPath;
+		$this->uploadPath    = APP_BASEURL.$uploadPath;
 		$this->imgFlag       = $imgFlag;
 		$this->fileInfo      = $_FILES[$this->fileName];
 		$this->fileRealName  = $this->fileInfo['name'];

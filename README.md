@@ -148,7 +148,7 @@ return [
 //main server
   'dsn'      => 'mysql:host=127.0.0.1;dbname=test',
   'user'     => 'root',
-  'password' => '950826',
+  'password' => '01',
   'charset'  => 'utf8',
 
 //slaves server
@@ -156,7 +156,7 @@ return [
     [
       'dsn'      => 'mysql:host=127.0.0.1;dbname=mjz',
       'user'     => 'root',
-      'password' => '950826',
+      'password' => '01',
       'charset'  => 'utf8',
     ],
   ],
